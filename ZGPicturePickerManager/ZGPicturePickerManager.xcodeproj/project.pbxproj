@@ -1,0 +1,535 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EFD516081C7ED642003361BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD516071C7ED642003361BC /* main.m */; };
+		EFD5160B1C7ED642003361BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5160A1C7ED642003361BC /* AppDelegate.m */; };
+		EFD5160E1C7ED642003361BC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5160D1C7ED642003361BC /* ViewController.m */; };
+		EFD516111C7ED642003361BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFD5160F1C7ED642003361BC /* Main.storyboard */; };
+		EFD516131C7ED642003361BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFD516121C7ED642003361BC /* Assets.xcassets */; };
+		EFD516161C7ED642003361BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFD516141C7ED642003361BC /* LaunchScreen.storyboard */; };
+		EFD516211C7ED642003361BC /* ZGPicturePickerManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD516201C7ED642003361BC /* ZGPicturePickerManagerTests.m */; };
+		EFD5162C1C7ED642003361BC /* ZGPicturePickerManagerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5162B1C7ED642003361BC /* ZGPicturePickerManagerUITests.m */; };
+		EFD5163C1C7ED67C003361BC /* ZGPicturePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5163B1C7ED67C003361BC /* ZGPicturePickerManager.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EFD5161D1C7ED642003361BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EFD515FB1C7ED641003361BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFD516021C7ED641003361BC;
+			remoteInfo = ZGPicturePickerManager;
+		};
+		EFD516281C7ED642003361BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EFD515FB1C7ED641003361BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFD516021C7ED641003361BC;
+			remoteInfo = ZGPicturePickerManager;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EFD516031C7ED642003361BC /* ZGPicturePickerManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZGPicturePickerManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFD516071C7ED642003361BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EFD516091C7ED642003361BC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EFD5160A1C7ED642003361BC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EFD5160C1C7ED642003361BC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EFD5160D1C7ED642003361BC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EFD516101C7ED642003361BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EFD516121C7ED642003361BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EFD516151C7ED642003361BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EFD516171C7ED642003361BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFD5161C1C7ED642003361BC /* ZGPicturePickerManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZGPicturePickerManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFD516201C7ED642003361BC /* ZGPicturePickerManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGPicturePickerManagerTests.m; sourceTree = "<group>"; };
+		EFD516221C7ED642003361BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFD516271C7ED642003361BC /* ZGPicturePickerManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZGPicturePickerManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFD5162B1C7ED642003361BC /* ZGPicturePickerManagerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGPicturePickerManagerUITests.m; sourceTree = "<group>"; };
+		EFD5162D1C7ED642003361BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFD5163A1C7ED67C003361BC /* ZGPicturePickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPicturePickerManager.h; sourceTree = "<group>"; };
+		EFD5163B1C7ED67C003361BC /* ZGPicturePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGPicturePickerManager.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EFD516001C7ED641003361BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFD516191C7ED642003361BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFD516241C7ED642003361BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EFD515FA1C7ED641003361BC = {
+			isa = PBXGroup;
+			children = (
+				EFD516051C7ED642003361BC /* ZGPicturePickerManager */,
+				EFD5161F1C7ED642003361BC /* ZGPicturePickerManagerTests */,
+				EFD5162A1C7ED642003361BC /* ZGPicturePickerManagerUITests */,
+				EFD516041C7ED642003361BC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EFD516041C7ED642003361BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EFD516031C7ED642003361BC /* ZGPicturePickerManager.app */,
+				EFD5161C1C7ED642003361BC /* ZGPicturePickerManagerTests.xctest */,
+				EFD516271C7ED642003361BC /* ZGPicturePickerManagerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EFD516051C7ED642003361BC /* ZGPicturePickerManager */ = {
+			isa = PBXGroup;
+			children = (
+				EFD516391C7ED66F003361BC /* ZGPicturePickerManager */,
+				EFD516091C7ED642003361BC /* AppDelegate.h */,
+				EFD5160A1C7ED642003361BC /* AppDelegate.m */,
+				EFD5160C1C7ED642003361BC /* ViewController.h */,
+				EFD5160D1C7ED642003361BC /* ViewController.m */,
+				EFD5160F1C7ED642003361BC /* Main.storyboard */,
+				EFD516121C7ED642003361BC /* Assets.xcassets */,
+				EFD516141C7ED642003361BC /* LaunchScreen.storyboard */,
+				EFD516171C7ED642003361BC /* Info.plist */,
+				EFD516061C7ED642003361BC /* Supporting Files */,
+			);
+			path = ZGPicturePickerManager;
+			sourceTree = "<group>";
+		};
+		EFD516061C7ED642003361BC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EFD516071C7ED642003361BC /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EFD5161F1C7ED642003361BC /* ZGPicturePickerManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				EFD516201C7ED642003361BC /* ZGPicturePickerManagerTests.m */,
+				EFD516221C7ED642003361BC /* Info.plist */,
+			);
+			path = ZGPicturePickerManagerTests;
+			sourceTree = "<group>";
+		};
+		EFD5162A1C7ED642003361BC /* ZGPicturePickerManagerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EFD5162B1C7ED642003361BC /* ZGPicturePickerManagerUITests.m */,
+				EFD5162D1C7ED642003361BC /* Info.plist */,
+			);
+			path = ZGPicturePickerManagerUITests;
+			sourceTree = "<group>";
+		};
+		EFD516391C7ED66F003361BC /* ZGPicturePickerManager */ = {
+			isa = PBXGroup;
+			children = (
+				EFD5163A1C7ED67C003361BC /* ZGPicturePickerManager.h */,
+				EFD5163B1C7ED67C003361BC /* ZGPicturePickerManager.m */,
+			);
+			path = ZGPicturePickerManager;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EFD516021C7ED641003361BC /* ZGPicturePickerManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFD516301C7ED642003361BC /* Build configuration list for PBXNativeTarget "ZGPicturePickerManager" */;
+			buildPhases = (
+				EFD515FF1C7ED641003361BC /* Sources */,
+				EFD516001C7ED641003361BC /* Frameworks */,
+				EFD516011C7ED641003361BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZGPicturePickerManager;
+			productName = ZGPicturePickerManager;
+			productReference = EFD516031C7ED642003361BC /* ZGPicturePickerManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EFD5161B1C7ED642003361BC /* ZGPicturePickerManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFD516331C7ED642003361BC /* Build configuration list for PBXNativeTarget "ZGPicturePickerManagerTests" */;
+			buildPhases = (
+				EFD516181C7ED642003361BC /* Sources */,
+				EFD516191C7ED642003361BC /* Frameworks */,
+				EFD5161A1C7ED642003361BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EFD5161E1C7ED642003361BC /* PBXTargetDependency */,
+			);
+			name = ZGPicturePickerManagerTests;
+			productName = ZGPicturePickerManagerTests;
+			productReference = EFD5161C1C7ED642003361BC /* ZGPicturePickerManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EFD516261C7ED642003361BC /* ZGPicturePickerManagerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFD516361C7ED642003361BC /* Build configuration list for PBXNativeTarget "ZGPicturePickerManagerUITests" */;
+			buildPhases = (
+				EFD516231C7ED642003361BC /* Sources */,
+				EFD516241C7ED642003361BC /* Frameworks */,
+				EFD516251C7ED642003361BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EFD516291C7ED642003361BC /* PBXTargetDependency */,
+			);
+			name = ZGPicturePickerManagerUITests;
+			productName = ZGPicturePickerManagerUITests;
+			productReference = EFD516271C7ED642003361BC /* ZGPicturePickerManagerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EFD515FB1C7ED641003361BC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Zong;
+				TargetAttributes = {
+					EFD516021C7ED641003361BC = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					EFD5161B1C7ED642003361BC = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = EFD516021C7ED641003361BC;
+					};
+					EFD516261C7ED642003361BC = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = EFD516021C7ED641003361BC;
+					};
+				};
+			};
+			buildConfigurationList = EFD515FE1C7ED641003361BC /* Build configuration list for PBXProject "ZGPicturePickerManager" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EFD515FA1C7ED641003361BC;
+			productRefGroup = EFD516041C7ED642003361BC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EFD516021C7ED641003361BC /* ZGPicturePickerManager */,
+				EFD5161B1C7ED642003361BC /* ZGPicturePickerManagerTests */,
+				EFD516261C7ED642003361BC /* ZGPicturePickerManagerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EFD516011C7ED641003361BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFD516161C7ED642003361BC /* LaunchScreen.storyboard in Resources */,
+				EFD516131C7ED642003361BC /* Assets.xcassets in Resources */,
+				EFD516111C7ED642003361BC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFD5161A1C7ED642003361BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFD516251C7ED642003361BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EFD515FF1C7ED641003361BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFD5160E1C7ED642003361BC /* ViewController.m in Sources */,
+				EFD5163C1C7ED67C003361BC /* ZGPicturePickerManager.m in Sources */,
+				EFD5160B1C7ED642003361BC /* AppDelegate.m in Sources */,
+				EFD516081C7ED642003361BC /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFD516181C7ED642003361BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFD516211C7ED642003361BC /* ZGPicturePickerManagerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFD516231C7ED642003361BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFD5162C1C7ED642003361BC /* ZGPicturePickerManagerUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EFD5161E1C7ED642003361BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFD516021C7ED641003361BC /* ZGPicturePickerManager */;
+			targetProxy = EFD5161D1C7ED642003361BC /* PBXContainerItemProxy */;
+		};
+		EFD516291C7ED642003361BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFD516021C7ED641003361BC /* ZGPicturePickerManager */;
+			targetProxy = EFD516281C7ED642003361BC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EFD5160F1C7ED642003361BC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EFD516101C7ED642003361BC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EFD516141C7ED642003361BC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EFD516151C7ED642003361BC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EFD5162E1C7ED642003361BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EFD5162F1C7ED642003361BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EFD516311C7ED642003361BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ZGPicturePickerManager/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Zong.ZGPicturePickerManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EFD516321C7ED642003361BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ZGPicturePickerManager/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Zong.ZGPicturePickerManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		EFD516341C7ED642003361BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ZGPicturePickerManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Zong.ZGPicturePickerManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZGPicturePickerManager.app/ZGPicturePickerManager";
+			};
+			name = Debug;
+		};
+		EFD516351C7ED642003361BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ZGPicturePickerManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Zong.ZGPicturePickerManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZGPicturePickerManager.app/ZGPicturePickerManager";
+			};
+			name = Release;
+		};
+		EFD516371C7ED642003361BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ZGPicturePickerManagerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Zong.ZGPicturePickerManagerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ZGPicturePickerManager;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		EFD516381C7ED642003361BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ZGPicturePickerManagerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Zong.ZGPicturePickerManagerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ZGPicturePickerManager;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EFD515FE1C7ED641003361BC /* Build configuration list for PBXProject "ZGPicturePickerManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFD5162E1C7ED642003361BC /* Debug */,
+				EFD5162F1C7ED642003361BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFD516301C7ED642003361BC /* Build configuration list for PBXNativeTarget "ZGPicturePickerManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFD516311C7ED642003361BC /* Debug */,
+				EFD516321C7ED642003361BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EFD516331C7ED642003361BC /* Build configuration list for PBXNativeTarget "ZGPicturePickerManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFD516341C7ED642003361BC /* Debug */,
+				EFD516351C7ED642003361BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EFD516361C7ED642003361BC /* Build configuration list for PBXNativeTarget "ZGPicturePickerManagerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFD516371C7ED642003361BC /* Debug */,
+				EFD516381C7ED642003361BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EFD515FB1C7ED641003361BC /* Project object */;
+}
