@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "ZGPicturePickerManager/ZGPicturePickerManager.h"
 
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
 #define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
@@ -21,8 +21,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self addMask];
 
+    [[ZGPicturePickerManager sharedPicturePickerManager] showActionSheetInView:self.view fromController:self completion:^(UIImage *image) {
+        
+        NSLog(@"选择完成");
+    } cancelBlock:nil];
 }
 
 

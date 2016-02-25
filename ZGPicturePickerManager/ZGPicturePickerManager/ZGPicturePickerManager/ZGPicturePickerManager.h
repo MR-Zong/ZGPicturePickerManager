@@ -8,21 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^ZGPickerCompletionBlock)(UIImage *image);
+typedef void(^ZGPickerCancelBlock)();
+
 @interface ZGPicturePickerManager : NSObject
 
 
-+ (ZGPicturePickerManager *)shared;
++ (instancetype)sharedPicturePickerManager;
 
-
-/*!
- * @brief 选择图片或者拍照完成选择使用拍照的图片后，会调用此block
- * @param image 选择的图片或者拍照后选择使用的图片
- */
-typedef void (^HYBPickerCompelitionBlock)(UIImage *image);
-/*!
- * @brief 用户点击取消时的回调block
- */
-typedef void (^HYBPickerCancelBlock)();
 
 /*!
  * @brief 此方法为调起选择图片或者拍照的入口，当选择图片或者拍照后选择使用图片后，回调completion，
@@ -34,7 +27,7 @@ typedef void (^HYBPickerCancelBlock)();
  */
 - (void)showActionSheetInView:(UIView *)inView
                fromController:(UIViewController *)fromController
-                   completion:(HYBPickerCompelitionBlock)completion
-                  cancelBlock:(HYBPickerCancelBlock)cancelBlock;
+                   completion:(ZGPickerCompletionBlock)completion
+                  cancelBlock:(ZGPickerCancelBlock)cancelBlock;
 
 @end
