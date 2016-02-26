@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		EFB70BCC1C7FEF7200AC9A83 /* ZGEditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB70BCB1C7FEF7200AC9A83 /* ZGEditImageViewController.m */; };
 		EFB70BCE1C8005B200AC9A83 /* ZGPicturePickerManager.gif in Resources */ = {isa = PBXBuildFile; fileRef = EFB70BCD1C8005B200AC9A83 /* ZGPicturePickerManager.gif */; };
+		EFB70BD11C805F2D00AC9A83 /* ZGWebViewWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB70BD01C805F2D00AC9A83 /* ZGWebViewWithProgress.m */; };
+		EFB70BD71C805F5700AC9A83 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB70BD41C805F5700AC9A83 /* NJKWebViewProgress.m */; };
+		EFB70BD81C805F5700AC9A83 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB70BD61C805F5700AC9A83 /* NJKWebViewProgressView.m */; };
 		EFD516081C7ED642003361BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD516071C7ED642003361BC /* main.m */; };
 		EFD5160B1C7ED642003361BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5160A1C7ED642003361BC /* AppDelegate.m */; };
 		EFD5160E1C7ED642003361BC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5160D1C7ED642003361BC /* ViewController.m */; };
@@ -42,6 +45,12 @@
 		EFB70BCA1C7FEF7200AC9A83 /* ZGEditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGEditImageViewController.h; sourceTree = "<group>"; };
 		EFB70BCB1C7FEF7200AC9A83 /* ZGEditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGEditImageViewController.m; sourceTree = "<group>"; };
 		EFB70BCD1C8005B200AC9A83 /* ZGPicturePickerManager.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ZGPicturePickerManager.gif; sourceTree = "<group>"; };
+		EFB70BCF1C805F2D00AC9A83 /* ZGWebViewWithProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGWebViewWithProgress.h; sourceTree = "<group>"; };
+		EFB70BD01C805F2D00AC9A83 /* ZGWebViewWithProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGWebViewWithProgress.m; sourceTree = "<group>"; };
+		EFB70BD31C805F5700AC9A83 /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
+		EFB70BD41C805F5700AC9A83 /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
+		EFB70BD51C805F5700AC9A83 /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgressView.h; sourceTree = "<group>"; };
+		EFB70BD61C805F5700AC9A83 /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
 		EFD516031C7ED642003361BC /* ZGPicturePickerManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZGPicturePickerManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD516071C7ED642003361BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EFD516091C7ED642003361BC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -98,6 +107,17 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		EFB70BD21C805F5700AC9A83 /* NJKWebViewProgress */ = {
+			isa = PBXGroup;
+			children = (
+				EFB70BD31C805F5700AC9A83 /* NJKWebViewProgress.h */,
+				EFB70BD41C805F5700AC9A83 /* NJKWebViewProgress.m */,
+				EFB70BD51C805F5700AC9A83 /* NJKWebViewProgressView.h */,
+				EFB70BD61C805F5700AC9A83 /* NJKWebViewProgressView.m */,
+			);
+			path = NJKWebViewProgress;
+			sourceTree = "<group>";
+		};
 		EFD515FA1C7ED641003361BC = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +141,7 @@
 		EFD516051C7ED642003361BC /* ZGPicturePickerManager */ = {
 			isa = PBXGroup;
 			children = (
+				EFB70BD21C805F5700AC9A83 /* NJKWebViewProgress */,
 				EFD5163D1C7F0E46003361BC /* ZGLocationManager */,
 				EFD516391C7ED66F003361BC /* ZGPicturePickerManager */,
 				EFD516091C7ED642003361BC /* AppDelegate.h */,
@@ -141,6 +162,8 @@
 			children = (
 				EFB70BCD1C8005B200AC9A83 /* ZGPicturePickerManager.gif */,
 				EFD516071C7ED642003361BC /* main.m */,
+				EFB70BCF1C805F2D00AC9A83 /* ZGWebViewWithProgress.h */,
+				EFB70BD01C805F2D00AC9A83 /* ZGWebViewWithProgress.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -313,11 +336,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB70BD71C805F5700AC9A83 /* NJKWebViewProgress.m in Sources */,
 				EFD5160E1C7ED642003361BC /* ViewController.m in Sources */,
 				EFD516401C7F0E46003361BC /* MYQLocationManager.m in Sources */,
+				EFB70BD11C805F2D00AC9A83 /* ZGWebViewWithProgress.m in Sources */,
 				EFD5163C1C7ED67C003361BC /* ZGPicturePickerManager.m in Sources */,
 				EFB70BCC1C7FEF7200AC9A83 /* ZGEditImageViewController.m in Sources */,
 				EFD5160B1C7ED642003361BC /* AppDelegate.m in Sources */,
+				EFB70BD81C805F5700AC9A83 /* NJKWebViewProgressView.m in Sources */,
 				EFD516081C7ED642003361BC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

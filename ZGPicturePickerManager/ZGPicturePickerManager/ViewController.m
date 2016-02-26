@@ -14,6 +14,8 @@
 
 @interface ViewController ()
 
+@property (nonatomic, weak) UIImageView *imageView;
+
 @end
 
 @implementation ViewController
@@ -22,15 +24,32 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
+    [self initView];
   
+}
+
+- (void)initView
+{
+    UIImageView *imageView = [[UIImageView alloc] init];
+    self.imageView = imageView;
+    imageView.frame = self.view.bounds;
+    imageView.contentMode = UIViewContentModeCenter;
+    imageView.backgroundColor = [UIColor blackColor];
+    
+    [self.view addSubview:imageView];
 }
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    __weak typeof(self) weakSelf = self;
     [[ZGPicturePickerManager sharedPicturePickerManager] showActionSheetInView:self.view fromController:self completion:^(UIImage *image) {
         
         NSLog(@"选择完成");
+        NSLog(@"weakSelf %@",weakSelf);
+        NSLog(@"weakSelf.imageView %@",weakSelf.imageView);
+        NSLog(@"image %@",image);
+        weakSelf.imageView.image = image;
     } cancelBlock:nil];
 }
 

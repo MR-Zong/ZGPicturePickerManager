@@ -20,6 +20,10 @@
 
 @property (nonatomic,assign) CGFloat maximumZoomScale;
 
+@property (nonatomic,assign) CGFloat minimumZoomScale;
+
+@property (nonatomic,assign) CGRect clipRect;
+
 
 @end
 
@@ -43,6 +47,7 @@
     
     UIImageView *imageView = [[UIImageView alloc] init];
     self.imageView = imageView;
+    imageView.userInteractionEnabled = YES;
     [self.scrollView addSubview:imageView];
     imageView.image = self.image;
     // 必须设置imageView.frame
@@ -52,11 +57,12 @@
     
     CGFloat scaleWidth = ZGSCREENWIDTH;
     // 重新你设置imageView.frame 压缩图片大小
-    tmpFrame.size.width = scaleWidth;
+//    tmpFrame.size.width = scaleWidth;
     
     imageView.frame = tmpFrame;
 
     self.maximumZoomScale = tmpFrame.size.width / scaleWidth;
+    self.minimumZoomScale = tmpFrame.size.width / scaleWidth;
     
     tmpFrame.origin.x = 0;
     
@@ -76,6 +82,11 @@
     if (self.maximumZoomScale > 1) {
         self.scrollView.maximumZoomScale = self.maximumZoomScale;
     }
+    if (self.minimumZoomScale > 0.5 && self.minimumZoomScale < 1) {
+        self.scrollView.minimumZoomScale = self.minimumZoomScale;
+    }else{
+        self.scrollView.minimumZoomScale = 0.5;
+    }
     
     [self addMaskForView:self.view];
     
@@ -85,9 +96,7 @@
 #pragma mark - <UIScrollViewDelegate,UIScrollViewAccessibilityDelegate>
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-    NSLog(@"imageView %@",self.imageView);
     return self.imageView;
-    
 }
 
 
@@ -111,6 +120,7 @@
 //    [path appendPath:[UIBezierPath bezierPathWithArcCenter:CGPointMake(width / 2, 200) radius:100 startAngle:0 endAngle:2*M_PI clockwise:NO]];
     
     // MARK: roundRectanglePath
+    self.clipRect = CGRectMake(20, (height - 200) / 2.0, width - 2 * 20, 200);
     [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:CGRectMake(20, (height - 200) / 2.0, width - 2 * 20, 200) cornerRadius:15] bezierPathByReversingPath]];
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
@@ -145,7 +155,7 @@
 - (void)completeButtonClick:(UIButton *)btn
 {
     if (self.completionBlock) {
-        self.completionBlock(self.image);
+        self.completionBlock([self imageByClip:self.image]);
     }
     
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -157,7 +167,27 @@
         self.cancelBlock();
     }
     
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - clipImage
+- (UIImage *)imageByClip:(UIImage *)image
+{
+    UIGraphicsBeginImageContext(self.clipRect.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    [self.scrollView.layer renderInContext:context];
+    
+    CGContextClipToRect(context, self.clipRect);
+    
+    UIImage *doneImage = UIGraphicsGetImageFromCurrentImageContext();
+
+    
+    UIGraphicsEndImageContext();
+    
+    
+    return doneImage;
 }
 
 @end
