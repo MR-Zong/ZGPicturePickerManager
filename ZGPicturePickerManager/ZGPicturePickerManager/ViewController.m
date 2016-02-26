@@ -22,6 +22,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
+  
+}
+
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
     [[ZGPicturePickerManager sharedPicturePickerManager] showActionSheetInView:self.view fromController:self completion:^(UIImage *image) {
         
         NSLog(@"选择完成");
@@ -29,28 +35,6 @@
 }
 
 
-
-- (void)addMask{
-    UIView * _maskButton = [[UIView alloc] init];
-    [_maskButton setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    [_maskButton setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.7]];
-    [self.view addSubview:_maskButton];
-    
-    //create path
-    UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    
-    // MARK: circlePath
-    [path appendPath:[UIBezierPath bezierPathWithArcCenter:CGPointMake(SCREEN_WIDTH / 2, 200) radius:100 startAngle:0 endAngle:2*M_PI clockwise:NO]];
-    
-    // MARK: roundRectanglePath
-    [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:CGRectMake(20, 400, SCREEN_WIDTH - 2 * 20, 100) cornerRadius:15] bezierPathByReversingPath]];
-    
-    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    
-    shapeLayer.path = path.CGPath;
-    
-    [_maskButton.layer setMask:shapeLayer];
-}
 
 - (void)test
 {

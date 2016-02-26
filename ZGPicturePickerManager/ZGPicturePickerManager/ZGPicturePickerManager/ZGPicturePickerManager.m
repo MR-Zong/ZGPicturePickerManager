@@ -7,6 +7,7 @@
 //
 
 #import "ZGPicturePickerManager.h"
+#import "ZGEditImageViewController.h"
 
 @interface ZGPicturePickerManager () <UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -67,10 +68,33 @@
             break;
         }
         default:
+            return;
             break;
     }
     
     [self.fromController presentViewController:imagePickerVC animated:YES completion:nil];
 }
+
+#pragma mark - <UIImagePickerControllerDelegate>
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    NSLog(@"info %@",info);
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    ZGEditImageViewController *editImageViewController = [[ZGEditImageViewController alloc] init];
+    editImageViewController.image = image;
+    editImageViewController.completionBlock = self.completionBlock;
+    editImageViewController.cancelBlock = self.cancelBlock;
+    [picker pushViewController:editImageViewController animated:YES];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    if (self.cancelBlock) {
+        self.cancelBlock();
+    }
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 @end
