@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EFB70BCC1C7FEF7200AC9A83 /* ZGEditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB70BCB1C7FEF7200AC9A83 /* ZGEditImageViewController.m */; };
+		EFB70BCE1C8005B200AC9A83 /* ZGPicturePickerManager.gif in Resources */ = {isa = PBXBuildFile; fileRef = EFB70BCD1C8005B200AC9A83 /* ZGPicturePickerManager.gif */; };
 		EFD516081C7ED642003361BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD516071C7ED642003361BC /* main.m */; };
 		EFD5160B1C7ED642003361BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5160A1C7ED642003361BC /* AppDelegate.m */; };
 		EFD5160E1C7ED642003361BC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5160D1C7ED642003361BC /* ViewController.m */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		EFB70BCA1C7FEF7200AC9A83 /* ZGEditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGEditImageViewController.h; sourceTree = "<group>"; };
 		EFB70BCB1C7FEF7200AC9A83 /* ZGEditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGEditImageViewController.m; sourceTree = "<group>"; };
+		EFB70BCD1C8005B200AC9A83 /* ZGPicturePickerManager.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ZGPicturePickerManager.gif; sourceTree = "<group>"; };
 		EFD516031C7ED642003361BC /* ZGPicturePickerManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZGPicturePickerManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD516071C7ED642003361BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EFD516091C7ED642003361BC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		EFD516061C7ED642003361BC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EFB70BCD1C8005B200AC9A83 /* ZGPicturePickerManager.gif */,
 				EFD516071C7ED642003361BC /* main.m */,
 			);
 			name = "Supporting Files";
@@ -282,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB70BCE1C8005B200AC9A83 /* ZGPicturePickerManager.gif in Resources */,
 				EFD516161C7ED642003361BC /* LaunchScreen.storyboard in Resources */,
 				EFD516131C7ED642003361BC /* Assets.xcassets in Resources */,
 				EFD516111C7ED642003361BC /* Main.storyboard in Resources */,
