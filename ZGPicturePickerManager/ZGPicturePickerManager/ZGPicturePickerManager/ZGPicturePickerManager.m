@@ -78,7 +78,6 @@
 #pragma mark - <UIImagePickerControllerDelegate>
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    NSLog(@"info %@",info);
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     ZGEditImageViewController *editImageViewController = [[ZGEditImageViewController alloc] init];
     editImageViewController.image = image;
