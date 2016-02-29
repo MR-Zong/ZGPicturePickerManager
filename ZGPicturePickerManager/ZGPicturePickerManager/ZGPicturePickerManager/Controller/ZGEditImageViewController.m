@@ -173,19 +173,35 @@
 #pragma mark - clipImage
 - (UIImage *)imageByClip:(UIImage *)image
 {
-    UIGraphicsBeginImageContext(self.clipRect.size);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    [self.scrollView.layer renderInContext:context];
-    
-    CGContextClipToRect(context, self.clipRect);
-    
-    UIImage *doneImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage* doneImage = nil;
+    UIGraphicsBeginImageContext(self.scrollView.contentSize);
+    {
+        CGPoint savedContentOffset = self.scrollView.contentOffset;
+        CGRect savedFrame = self.scrollView.frame;
+        self.scrollView.contentOffset = CGPointZero;
+        self.scrollView.frame = CGRectMake(0, 0, self.scrollView.contentSize.width, self.scrollView.contentSize.height);
 
-    
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGRect clipRect = CGRectMake(savedContentOffset.x + self.clipRect.origin.x, savedContentOffset.y + self.clipRect.origin.y, self.clipRect.size.width, self.clipRect.size.height);
+        CGContextAddRect(context, clipRect);
+        CGContextClip(context);
+        
+        [self.scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
+        
+        doneImage = UIGraphicsGetImageFromCurrentImageContext();
+        CGImageRef imgRef = CGImageCreateWithImageInRect(doneImage.CGImage, clipRect);
+        doneImage = [UIImage imageWithCGImage:imgRef];
+        
+        self.scrollView.contentOffset = savedContentOffset;
+        self.scrollView.frame = savedFrame;
+    }
     UIGraphicsEndImageContext();
     
+    /** test
+    // write image to file
+    NSData *imgData = UIImagePNGRepresentation(doneImage);
+    [imgData writeToFile:@"/Users/kgfanxing/Desktop/doneImage.png" atomically:YES];
+    */
     
     return doneImage;
 }
