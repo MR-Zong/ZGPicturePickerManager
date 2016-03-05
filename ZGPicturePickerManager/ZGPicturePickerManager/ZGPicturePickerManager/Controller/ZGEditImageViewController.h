@@ -19,4 +19,5 @@ typedef void(^ZGPickerCancelBlock)();
 
 @property (copy, nonatomic) ZGPickerCancelBlock cancelBlock;
 
+
 @end

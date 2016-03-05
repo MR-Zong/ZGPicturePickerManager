@@ -167,7 +167,12 @@
         self.cancelBlock();
     }
     
-    [self.navigationController popViewControllerAnimated:YES];
+    UIImagePickerController *imagePickerController = (UIImagePickerController *)self.navigationController;
+    if (imagePickerController.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - clipImage

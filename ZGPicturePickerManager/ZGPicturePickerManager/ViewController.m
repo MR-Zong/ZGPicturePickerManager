@@ -37,10 +37,15 @@
     imageView.backgroundColor = [UIColor blackColor];
     
     [self.view addSubview:imageView];
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:@"选择图片" forState:UIControlStateNormal];
+    btn.frame = CGRectMake(20, [UIScreen mainScreen].bounds.size.height - 50 - 20, 80, 50);
+    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
 }
 
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+- (void)btnClick
 {
     __weak typeof(self) weakSelf = self;
     [[ZGPicturePickerManager sharedPicturePickerManager] showActionSheetInView:self.view fromController:self completion:^(UIImage *image) {
@@ -51,9 +56,8 @@
         NSLog(@"image %@",image);
         weakSelf.imageView.image = image;
     } cancelBlock:nil];
+
 }
-
-
 
 - (void)test
 {
