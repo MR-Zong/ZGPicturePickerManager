@@ -80,6 +80,8 @@
 {
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     ZGEditImageViewController *editImageViewController = [[ZGEditImageViewController alloc] init];
+    editImageViewController.clipSize = self.clipSize;
+    editImageViewController.cornerRadius = self.cornerRadius;
     editImageViewController.image = image;
     editImageViewController.completionBlock = self.completionBlock;
     editImageViewController.cancelBlock = self.cancelBlock;

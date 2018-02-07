@@ -16,6 +16,8 @@ typedef void(^ZGPickerCancelBlock)();
 
 + (instancetype)sharedPicturePickerManager;
 
+@property (nonatomic, assign) CGSize clipSize;
+@property (nonatomic, assign) CGFloat cornerRadius;
 
 /*!
  * @brief 此方法为调起选择图片或者拍照的入口，当选择图片或者拍照后选择使用图片后，回调completion，

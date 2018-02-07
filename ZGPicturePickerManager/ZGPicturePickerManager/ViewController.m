@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "ZGPicturePickerManager/ZGPicturePickerManager.h"
+#import "ZGPicturePickerManager.h"
 
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
 #define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
@@ -48,7 +48,10 @@
 - (void)btnClick
 {
     __weak typeof(self) weakSelf = self;
-    [[ZGPicturePickerManager sharedPicturePickerManager] showActionSheetInView:self.view fromController:self completion:^(UIImage *image) {
+    ZGPicturePickerManager *pickerM = [ZGPicturePickerManager sharedPicturePickerManager];
+    pickerM.clipSize = CGSizeMake(200, 200);
+    pickerM.cornerRadius = pickerM.clipSize.height / 2.0;
+    [pickerM showActionSheetInView:self.view fromController:self completion:^(UIImage *image) {
         
         NSLog(@"选择完成");
         NSLog(@"weakSelf %@",weakSelf);

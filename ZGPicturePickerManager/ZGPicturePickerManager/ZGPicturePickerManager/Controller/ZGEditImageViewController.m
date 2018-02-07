@@ -17,12 +17,11 @@
 @property (weak, nonatomic) UIScrollView *scrollView;
 
 @property (weak,nonatomic) UIImageView *imageView;
+@property (nonatomic,assign) CGRect clipRect;
 
 @property (nonatomic,assign) CGFloat maximumZoomScale;
 
 @property (nonatomic,assign) CGFloat minimumZoomScale;
-
-@property (nonatomic,assign) CGRect clipRect;
 
 
 @end
@@ -120,8 +119,16 @@
 //    [path appendPath:[UIBezierPath bezierPathWithArcCenter:CGPointMake(width / 2, 200) radius:100 startAngle:0 endAngle:2*M_PI clockwise:NO]];
     
     // MARK: roundRectanglePath
-    self.clipRect = CGRectMake(20, (height - 200) / 2.0, width - 2 * 20, 200);
-    [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:CGRectMake(20, (height - 200) / 2.0, width - 2 * 20, 200) cornerRadius:15] bezierPathByReversingPath]];
+    if (self.clipSize.width > 0 && self.clipSize.height > 0) {
+        self.clipRect = CGRectMake((width-self.clipSize.width)/2.0, (height - self.clipSize.height)/2.0, self.clipSize.width, self.clipSize.height);
+    }else {
+        self.clipRect = CGRectMake(20, (height - 200) / 2.0, width - 2 * 20, 200);
+    }
+    if (self.cornerRadius <= 0) {
+        self.cornerRadius = 15;
+    }
+    [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:self.clipRect
+                                                 cornerRadius:self.cornerRadius] bezierPathByReversingPath]];
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     

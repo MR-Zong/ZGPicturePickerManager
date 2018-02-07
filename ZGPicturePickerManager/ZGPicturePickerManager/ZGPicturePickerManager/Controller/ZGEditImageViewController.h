@@ -14,6 +14,8 @@ typedef void(^ZGPickerCancelBlock)();
 @interface ZGEditImageViewController : UIViewController
 
 @property (strong, nonatomic) UIImage *image;
+@property (nonatomic, assign) CGSize clipSize;
+@property (nonatomic, assign) CGFloat cornerRadius;
 
 @property (copy, nonatomic) ZGPickerCompletionBlock completionBlock;
 
