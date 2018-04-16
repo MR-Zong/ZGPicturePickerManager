@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-typedef void(^ZGPickerCompletionBlock)(UIImage *image);
-typedef void(^ZGPickerCancelBlock)();
+#import "ZGEditImageViewController.h"
 
 @interface ZGPicturePickerManager : NSObject
 

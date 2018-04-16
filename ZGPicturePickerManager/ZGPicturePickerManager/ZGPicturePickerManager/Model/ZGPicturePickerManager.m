@@ -7,7 +7,6 @@
 //
 
 #import "ZGPicturePickerManager.h"
-#import "ZGEditImageViewController.h"
 
 @interface ZGPicturePickerManager () <UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 

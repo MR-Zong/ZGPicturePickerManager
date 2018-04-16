@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^ZGPickerCompletionBlock)(UIImage *image);
-typedef void(^ZGPickerCancelBlock)();
+typedef void(^ZGPickerCancelBlock)(void);
 
 @interface ZGEditImageViewController : UIViewController
 
