@@ -14,8 +14,18 @@
 
 + (instancetype)sharedPicturePickerManager;
 
+/**
+ * 裁剪矩形
+ */
 @property (nonatomic, assign) CGSize clipSize;
+/**
+ * 裁剪矩形的圆角
+ */
 @property (nonatomic, assign) CGFloat cornerRadius;
+/**
+ * 是否需要遮罩
+ */
+@property (nonatomic, assign) BOOL noClipMask;
 
 /*!
  * @brief 此方法为调起选择图片或者拍照的入口，当选择图片或者拍照后选择使用图片后，回调completion，

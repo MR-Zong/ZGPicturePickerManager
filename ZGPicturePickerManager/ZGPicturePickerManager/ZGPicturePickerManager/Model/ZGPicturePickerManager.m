@@ -81,6 +81,8 @@
     ZGEditImageViewController *editImageViewController = [[ZGEditImageViewController alloc] init];
     editImageViewController.clipSize = self.clipSize;
     editImageViewController.cornerRadius = self.cornerRadius;
+    editImageViewController.noClipMask = self.noClipMask;
+    editImageViewController.info = info;
     editImageViewController.image = image;
     editImageViewController.completionBlock = self.completionBlock;
     editImageViewController.cancelBlock = self.cancelBlock;

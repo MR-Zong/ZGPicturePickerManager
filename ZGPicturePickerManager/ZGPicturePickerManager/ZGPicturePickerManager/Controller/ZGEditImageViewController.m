@@ -14,81 +14,78 @@
 
 @interface ZGEditImageViewController () <UIScrollViewAccessibilityDelegate,UIScrollViewDelegate>
 
-@property (weak, nonatomic) UIScrollView *scrollView;
-
-@property (weak,nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UIScrollView *scrollView;
+@property (strong,nonatomic) UIImageView *imageView;
 @property (nonatomic,assign) CGRect clipRect;
-
-@property (nonatomic,assign) CGFloat maximumZoomScale;
-
-@property (nonatomic,assign) CGFloat minimumZoomScale;
-
 
 @end
 
 @implementation ZGEditImageViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-  
-    [self initView];
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-- (void)initView
-{
-    UIScrollView *scrollView = [[UIScrollView alloc] init];
-    self.scrollView = scrollView;
-    scrollView.delegate = self;
-    scrollView.frame = self.view.bounds;
-    scrollView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:scrollView];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     
-    
-    UIImageView *imageView = [[UIImageView alloc] init];
-    self.imageView = imageView;
-    imageView.userInteractionEnabled = YES;
-    [self.scrollView addSubview:imageView];
-    imageView.image = self.image;
-    // 必须设置imageView.frame
-    CGRect tmpFrame = imageView.frame;
-    tmpFrame.size.width = self.image.size.width;
-    tmpFrame.size.height = self.image.size.height;
-    
-    CGFloat scaleWidth = ZGSCREENWIDTH;
-    // 重新你设置imageView.frame 压缩图片大小
-//    tmpFrame.size.width = scaleWidth;
-    
-    imageView.frame = tmpFrame;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 
-    self.maximumZoomScale = tmpFrame.size.width / scaleWidth;
-    self.minimumZoomScale = tmpFrame.size.width / scaleWidth;
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
-    tmpFrame.origin.x = 0;
+    [self setupViews];
+}
+
+- (void)setupViews
+{
+    _scrollView = [[UIScrollView alloc] init];
+    _scrollView.delegate = self;
+    _scrollView.frame = self.view.bounds;
     
-    if (imageView.image.size.height >= ZGSCREENHEIGHT) {
-        
-        tmpFrame.origin.y = 0;
-        self.scrollView.contentSize = imageView.frame.size;
-    }else {
-        CGPoint tmpPoint = imageView.center;
-        tmpPoint.y = ZGSCREENHEIGHT * 0.5;
-        imageView.center = tmpPoint;
-        
+    //隐藏滚动条
+    _scrollView.showsVerticalScrollIndicator = NO;
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    _scrollView.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:_scrollView];
+    
+    
+    _imageView = [[UIImageView alloc] init];
+    _imageView.contentMode = UIViewContentModeScaleAspectFit;
+    _imageView.userInteractionEnabled = YES;
+    [self.scrollView addSubview:_imageView];
+    _imageView.image = self.image;
+    
+    
+    // 设置_imgView的位置大小
+    CGRect frame ;
+    frame.size.width = _scrollView.frame.size.width;
+    frame.size.height =frame.size.width*(_image.size.height/_image.size.width);
+    _imageView.frame = frame;
+    _imageView.center= _scrollView.center;
+    
+    //设置最大放大比例、内容大小和代理
+    _scrollView.maximumZoomScale = 2.0;
+    _scrollView.minimumZoomScale = 0.5;
+    _scrollView.contentSize=_imageView.frame.size;
+    
+    
+    // 遮罩
+    if (self.noClipMask == NO) {
+        [self addMaskForView:self.view];
     }
     
-    imageView.frame = tmpFrame;
-    
-    if (self.maximumZoomScale > 1) {
-        self.scrollView.maximumZoomScale = self.maximumZoomScale;
-    }
-    if (self.minimumZoomScale > 0.5 && self.minimumZoomScale < 1) {
-        self.scrollView.minimumZoomScale = self.minimumZoomScale;
-    }else{
-        self.scrollView.minimumZoomScale = 0.5;
-    }
-    
-    [self addMaskForView:self.view];
-    
+    // 底部操作按钮
     [self addBottomButtons];
 }
 
@@ -97,6 +94,19 @@
 {
     return self.imageView;
 }
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    CGFloat xcenter = scrollView.center.x , ycenter = scrollView.center.y;
+    //目前contentsize的width是否大于原scrollview的contentsize，如果大于，设置imageview中心x点为contentsize的一半，以固定imageview在该contentsize中心。如果不大于说明图像的宽还没有超出屏幕范围，可继续让中心x点为屏幕中点，此种情况确保图像在屏幕中心。
+    
+    xcenter = scrollView.contentSize.width > scrollView.frame.size.width ? scrollView.contentSize.width/2 : xcenter;
+    
+    ycenter = scrollView.contentSize.height > scrollView.frame.size.height ? scrollView.contentSize.height/2 : ycenter;
+    
+    [self.imageView setCenter:CGPointMake(xcenter, ycenter)];
+}
+
 
 
 #pragma mark - addMask
@@ -115,8 +125,8 @@
     //create path
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, width, height)];
     
-//    // MARK: circlePath
-//    [path appendPath:[UIBezierPath bezierPathWithArcCenter:CGPointMake(width / 2, 200) radius:100 startAngle:0 endAngle:2*M_PI clockwise:NO]];
+    //    // MARK: circlePath
+    //    [path appendPath:[UIBezierPath bezierPathWithArcCenter:CGPointMake(width / 2, 200) radius:100 startAngle:0 endAngle:2*M_PI clockwise:NO]];
     
     // MARK: roundRectanglePath
     if (self.clipSize.width > 0 && self.clipSize.height > 0) {
@@ -124,7 +134,7 @@
     }else {
         self.clipRect = CGRectMake(20, (height - 200) / 2.0, width - 2 * 20, 200);
     }
-    if (self.cornerRadius <= 0) {
+    if (self.cornerRadius < 0) {
         self.cornerRadius = 15;
     }
     [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:self.clipRect
@@ -139,7 +149,7 @@
 }
 
 
-#pragma mark - 
+#pragma mark -
 - (void)addBottomButtons
 {
     /**
@@ -147,13 +157,13 @@
      */
     UIButton *completeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [completeButton setTitle:@"完成" forState:UIControlStateNormal];
-    completeButton.frame = CGRectMake(self.view.bounds.size.width - 40 - 20, self.view.bounds.size.height - 23 - 40, 40, 23);
+    completeButton.frame = CGRectMake(self.view.bounds.size.width - 60 - 20, self.view.bounds.size.height - 40 - 40, 60, 40);
     [self.view addSubview:completeButton];
     [completeButton addTarget:self action:@selector(completeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
-    cancelButton.frame = CGRectMake(20, self.view.bounds.size.height - 23 - 40, 40, 23);
+    cancelButton.frame = CGRectMake(20, self.view.bounds.size.height - 40 - 40, 60, 40);
     [self.view addSubview:cancelButton];
     [cancelButton addTarget:self action:@selector(cancelButtonClick) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -162,7 +172,13 @@
 - (void)completeButtonClick:(UIButton *)btn
 {
     if (self.completionBlock) {
-        self.completionBlock([self imageByClip:self.image]);
+        UIImage *resultImage = nil;
+        if (self.noClipMask) {
+            resultImage = self.image;
+        }else {
+            resultImage = [self imageByClip:self.image];
+        }
+        self.completionBlock(resultImage,self.info);
     }
     
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -192,7 +208,7 @@
         CGRect savedFrame = self.scrollView.frame;
         self.scrollView.contentOffset = CGPointZero;
         self.scrollView.frame = CGRectMake(0, 0, self.scrollView.contentSize.width, self.scrollView.contentSize.height);
-
+        
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGRect clipRect = CGRectMake(savedContentOffset.x + self.clipRect.origin.x, savedContentOffset.y + self.clipRect.origin.y, self.clipRect.size.width, self.clipRect.size.height);
         CGContextAddRect(context, clipRect);
@@ -210,10 +226,10 @@
     UIGraphicsEndImageContext();
     
     /** test
-    // write image to file
-    NSData *imgData = UIImagePNGRepresentation(doneImage);
-    [imgData writeToFile:@"/Users/kgfanxing/Desktop/doneImage.png" atomically:YES];
-    */
+     // write image to file
+     NSData *imgData = UIImagePNGRepresentation(doneImage);
+     [imgData writeToFile:@"/Users/kgfanxing/Desktop/doneImage.png" atomically:YES];
+     */
     
     return doneImage;
 }

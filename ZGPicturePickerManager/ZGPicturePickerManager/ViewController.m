@@ -49,9 +49,9 @@
 {
     __weak typeof(self) weakSelf = self;
     ZGPicturePickerManager *pickerM = [ZGPicturePickerManager sharedPicturePickerManager];
-    pickerM.clipSize = CGSizeMake(200, 200);
-    pickerM.cornerRadius = pickerM.clipSize.height / 2.0;
-    [pickerM showActionSheetInView:self.view fromController:self completion:^(UIImage *image) {
+    pickerM.clipSize = CGSizeMake(280, 260);
+//    pickerM.cornerRadius = pickerM.clipSize.height / 2.0;
+    [pickerM showActionSheetInView:self.view fromController:self completion:^(UIImage *image, NSDictionary *info) {
         
         NSLog(@"选择完成");
         NSLog(@"weakSelf %@",weakSelf);
