@@ -7,6 +7,7 @@
 //
 
 #import "ZGEditImageViewController.h"
+#import "ZGClipView.h"
 
 #define ZGSCREENHEIGHT [UIScreen mainScreen].bounds.size.height
 #define ZGSCREENWIDTH [UIScreen mainScreen].bounds.size.width
@@ -15,7 +16,8 @@
 @interface ZGEditImageViewController () <UIScrollViewAccessibilityDelegate,UIScrollViewDelegate>
 
 @property (strong, nonatomic) UIScrollView *scrollView;
-@property (strong,nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) ZGClipView *clipView;
 @property (nonatomic,assign) CGRect clipRect;
 
 @end
@@ -52,7 +54,6 @@
     _scrollView = [[UIScrollView alloc] init];
     _scrollView.delegate = self;
     _scrollView.frame = self.view.bounds;
-    
     //隐藏滚动条
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.showsHorizontalScrollIndicator = NO;
@@ -79,11 +80,15 @@
     _scrollView.minimumZoomScale = 0.5;
     _scrollView.contentSize=_imageView.frame.size;
     
-    
     // 遮罩
     if (self.noClipMask == NO) {
-        [self addMaskForView:self.view];
+        [self addMaskView];
     }
+    
+    // clipView
+    _clipView = [[ZGClipView alloc] initWithClipTargetFrame:self.clipRect];
+    [self.view addSubview:_clipView];
+
     
     // 底部操作按钮
     [self addBottomButtons];
@@ -110,15 +115,14 @@
 
 
 #pragma mark - addMask
-- (void)addMaskForView:(UIView *)view
+- (void)addMaskView
 {
-    CGFloat width = view.bounds.size.width;
-    CGFloat height = view.bounds.size.height;
+    CGFloat width = self.view.bounds.size.width;
+    CGFloat height = self.view.bounds.size.height;
     
-    UIView * maskView = [[UIView alloc] init];
+    UIView * maskView = [[UIView alloc] initWithFrame:self.view.bounds];
     // 必须设置为NO
     maskView.userInteractionEnabled = NO;
-    [maskView setFrame:CGRectMake(0, 0, width, height)];
     [maskView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.7]];
     [self.view addSubview:maskView];
     
@@ -135,15 +139,13 @@
         self.clipRect = CGRectMake(20, (height - 200) / 2.0, width - 2 * 20, 200);
     }
     if (self.cornerRadius < 0) {
-        self.cornerRadius = 15;
+        self.cornerRadius = 0;
     }
     [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:self.clipRect
                                                  cornerRadius:self.cornerRadius] bezierPathByReversingPath]];
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    
     shapeLayer.path = path.CGPath;
-    
     [maskView.layer setMask:shapeLayer];
     
 }

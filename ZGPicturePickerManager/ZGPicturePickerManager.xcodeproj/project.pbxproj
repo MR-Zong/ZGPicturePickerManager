@@ -20,6 +20,9 @@
 		EFD516211C7ED642003361BC /* ZGPicturePickerManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD516201C7ED642003361BC /* ZGPicturePickerManagerTests.m */; };
 		EFD5162C1C7ED642003361BC /* ZGPicturePickerManagerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5162B1C7ED642003361BC /* ZGPicturePickerManagerUITests.m */; };
 		EFD516401C7F0E46003361BC /* MYQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD5163F1C7F0E46003361BC /* MYQLocationManager.m */; };
+		EFEEE3A4209D9481003BD020 /* ZGClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEEE3A3209D9481003BD020 /* ZGClipView.m */; };
+		EFEEE3A7209D95BA003BD020 /* ZGEdgeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEEE3A6209D95BA003BD020 /* ZGEdgeLineView.m */; };
+		EFEEE3AA209D95CF003BD020 /* ZGCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEEE3A9209D95CF003BD020 /* ZGCornerView.m */; };
 		EFF3F8921C84265700ECC468 /* ZGPicturePickerManager.gif in Resources */ = {isa = PBXBuildFile; fileRef = EFF3F8911C84265700ECC468 /* ZGPicturePickerManager.gif */; };
 		EFFF9E80202AA94F009FDCEA /* ZGPicturePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFF9E7F202AA94F009FDCEA /* ZGPicturePickerManager.m */; };
 /* End PBXBuildFile section */
@@ -68,6 +71,12 @@
 		EFD5162D1C7ED642003361BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFD5163E1C7F0E46003361BC /* MYQLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYQLocationManager.h; sourceTree = "<group>"; };
 		EFD5163F1C7F0E46003361BC /* MYQLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYQLocationManager.m; sourceTree = "<group>"; };
+		EFEEE3A2209D9481003BD020 /* ZGClipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGClipView.h; sourceTree = "<group>"; };
+		EFEEE3A3209D9481003BD020 /* ZGClipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGClipView.m; sourceTree = "<group>"; };
+		EFEEE3A5209D95BA003BD020 /* ZGEdgeLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGEdgeLineView.h; sourceTree = "<group>"; };
+		EFEEE3A6209D95BA003BD020 /* ZGEdgeLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGEdgeLineView.m; sourceTree = "<group>"; };
+		EFEEE3A8209D95CF003BD020 /* ZGCornerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGCornerView.h; sourceTree = "<group>"; };
+		EFEEE3A9209D95CF003BD020 /* ZGCornerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGCornerView.m; sourceTree = "<group>"; };
 		EFF3F8911C84265700ECC468 /* ZGPicturePickerManager.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ZGPicturePickerManager.gif; sourceTree = "<group>"; };
 		EFFF9E7E202AA94F009FDCEA /* ZGPicturePickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPicturePickerManager.h; sourceTree = "<group>"; };
 		EFFF9E7F202AA94F009FDCEA /* ZGPicturePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGPicturePickerManager.m; sourceTree = "<group>"; };
@@ -189,6 +198,7 @@
 		EFD516391C7ED66F003361BC /* ZGPicturePickerManager */ = {
 			isa = PBXGroup;
 			children = (
+				EFEEE3A1209D946D003BD020 /* View */,
 				EFFF9E7D202AA94F009FDCEA /* Model */,
 				EFB70BC91C7FEF5600AC9A83 /* Controller */,
 			);
@@ -202,6 +212,19 @@
 				EFD5163F1C7F0E46003361BC /* MYQLocationManager.m */,
 			);
 			path = ZGLocationManager;
+			sourceTree = "<group>";
+		};
+		EFEEE3A1209D946D003BD020 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EFEEE3A2209D9481003BD020 /* ZGClipView.h */,
+				EFEEE3A3209D9481003BD020 /* ZGClipView.m */,
+				EFEEE3A5209D95BA003BD020 /* ZGEdgeLineView.h */,
+				EFEEE3A6209D95BA003BD020 /* ZGEdgeLineView.m */,
+				EFEEE3A8209D95CF003BD020 /* ZGCornerView.h */,
+				EFEEE3A9209D95CF003BD020 /* ZGCornerView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		EFFF9E7D202AA94F009FDCEA /* Model */ = {
@@ -350,10 +373,13 @@
 				EFD516401C7F0E46003361BC /* MYQLocationManager.m in Sources */,
 				EFB70BD11C805F2D00AC9A83 /* ZGWebViewWithProgress.m in Sources */,
 				EFB70BCC1C7FEF7200AC9A83 /* ZGEditImageViewController.m in Sources */,
+				EFEEE3A7209D95BA003BD020 /* ZGEdgeLineView.m in Sources */,
 				EFD5160B1C7ED642003361BC /* AppDelegate.m in Sources */,
 				EFB70BD81C805F5700AC9A83 /* NJKWebViewProgressView.m in Sources */,
 				EFD516081C7ED642003361BC /* main.m in Sources */,
 				EFFF9E80202AA94F009FDCEA /* ZGPicturePickerManager.m in Sources */,
+				EFEEE3AA209D95CF003BD020 /* ZGCornerView.m in Sources */,
+				EFEEE3A4209D9481003BD020 /* ZGClipView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
