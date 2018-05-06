@@ -194,13 +194,21 @@
 - (void)completeButtonClick:(UIButton *)btn
 {
     if (self.completionBlock) {
-        UIImage *resultImage = nil;
+       
+        
         if (self.noClipMask) {
-            resultImage = self.image;
+            self.completionBlock(self.image,self.info, nil);
         }else {
-            resultImage = [self imageByClip:self.image];
+            [self imageByClip:self.image completeBlock:^(UIImage *image, PHAsset *photoAsset) {
+                NSLog(@"thread %@",[NSThread currentThread]);
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    self.completionBlock(image, self.info, photoAsset);
+                });
+            }];
         }
-        self.completionBlock(resultImage,self.info);
+        
+        
+       
     }
     
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -221,7 +229,7 @@
 }
 
 #pragma mark - clipImage
-- (UIImage *)imageByClip:(UIImage *)image
+- (void)imageByClip:(UIImage *)image completeBlock:(void(^)(UIImage *image, PHAsset *photoAsset))completeBlock
 {
     UIImage* doneImage = nil;
     UIGraphicsBeginImageContext(self.containView.bounds.size);
@@ -240,13 +248,68 @@
     }
     UIGraphicsEndImageContext();
     
-    /** test
-     // write image to file
-     NSData *imgData = UIImagePNGRepresentation(doneImage);
-     [imgData writeToFile:@"/Users/kgfanxing/Desktop/doneImage.png" atomically:YES];
-     */
+    // 是否保存到相册
+    if (self.isSaveToAlbum) {
+        [self saveImageInAlbum:doneImage completeBlock:^(PHAsset *photoAsset) {
+            if (completeBlock) {
+                completeBlock(doneImage, photoAsset);
+            }
+        }];
+    }else {
+        if (completeBlock) {
+            completeBlock(doneImage,nil);
+        }
+    }
     
-    return doneImage;
+}
+
+#pragma mark - 保存到相册
+- (void)saveImageInAlbum:(UIImage *)image completeBlock:(void(^)(PHAsset *photoAsset))completeBlock
+{
+    
+    NSMutableArray *imageIds = [NSMutableArray array];
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        //写入图片到相册
+        PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+        //记录本地标识，等待完成后取到相册中的图片对象
+        [imageIds addObject:req.placeholderForCreatedAsset.localIdentifier];
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        NSLog(@"success = %d, error = %@", success, error);
+        if (success)
+        {
+            //成功后取相册中的图片对象
+            __block PHAsset *imageAsset = nil;
+            PHFetchResult *result = [PHAsset fetchAssetsWithLocalIdentifiers:imageIds options:nil];
+            [result enumerateObjectsUsingBlock:^(PHAsset * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                imageAsset = obj;
+                *stop = YES;
+            }];
+            
+            if (imageAsset) {
+                
+                if (completeBlock) {
+                    completeBlock(imageAsset);
+                }
+                //                //加载图片数据
+                //                [[PHImageManager defaultManager] requestImageDataForAsset:imageAsset
+                //                                                                  options:nil
+                //                                                            resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+                //                                                                NSLog(@"imageData = %@", imageData);
+                //                                                            }];
+                
+                
+                
+            }
+            
+            
+            
+        }else {
+            if (completeBlock) {
+                completeBlock(nil);
+            }
+        }
+    }];
+    
 }
 
 #pragma mark - 直接从UIScrollView截图 ,缩小时候会解决不了

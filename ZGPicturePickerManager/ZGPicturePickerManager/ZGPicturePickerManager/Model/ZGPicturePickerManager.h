@@ -15,6 +15,11 @@
 + (instancetype)sharedPicturePickerManager;
 
 /**
+ * 是否保存到相册
+ */
+@property (nonatomic, assign) BOOL isSaveToAlbum;
+
+/**
  * 裁剪矩形
  */
 @property (nonatomic, assign) CGSize clipSize;

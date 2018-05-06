@@ -79,6 +79,7 @@
 {
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     ZGEditImageController *editImageViewController = [[ZGEditImageController alloc] init];
+    editImageViewController.isSaveToAlbum = self.isSaveToAlbum;
     editImageViewController.clipSize = self.clipSize;
     editImageViewController.cornerRadius = self.cornerRadius;
     editImageViewController.noClipMask = self.noClipMask;
