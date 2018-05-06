@@ -6,14 +6,14 @@
 //  Copyright © 2016年 Zong. All rights reserved.
 //
 
-#import "ZGEditImageViewController.h"
+#import "ZGEditImageController.h"
 #import "ZGClipView.h"
 
 #define ZGSCREENHEIGHT [UIScreen mainScreen].bounds.size.height
 #define ZGSCREENWIDTH [UIScreen mainScreen].bounds.size.width
 
 
-@interface ZGEditImageViewController () <UIScrollViewAccessibilityDelegate,UIScrollViewDelegate,ZGClipViewDelegate>
+@interface ZGEditImageController () <UIScrollViewAccessibilityDelegate,UIScrollViewDelegate,ZGClipViewDelegate>
 
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UIView *containView;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation ZGEditImageViewController
+@implementation ZGEditImageController
 
 
 - (void)viewWillAppear:(BOOL)animated {

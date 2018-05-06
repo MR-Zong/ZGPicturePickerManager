@@ -12,7 +12,7 @@
 typedef void(^ZGPickerCompletionBlock)(UIImage *image, NSDictionary *info);
 typedef void (^ZGPickerCancelBlock)(void);
 
-@interface ZGEditImageViewController : UIViewController
+@interface ZGEditImageController : UIViewController
 
 @property (nonatomic, strong) NSDictionary *info;
 @property (strong, nonatomic) UIImage *image;

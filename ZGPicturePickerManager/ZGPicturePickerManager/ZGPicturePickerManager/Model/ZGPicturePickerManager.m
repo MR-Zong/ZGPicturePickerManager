@@ -78,7 +78,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-    ZGEditImageViewController *editImageViewController = [[ZGEditImageViewController alloc] init];
+    ZGEditImageController *editImageViewController = [[ZGEditImageController alloc] init];
     editImageViewController.clipSize = self.clipSize;
     editImageViewController.cornerRadius = self.cornerRadius;
     editImageViewController.noClipMask = self.noClipMask;

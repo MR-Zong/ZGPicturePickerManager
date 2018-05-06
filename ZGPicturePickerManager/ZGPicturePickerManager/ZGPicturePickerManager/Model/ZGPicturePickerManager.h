@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZGEditImageViewController.h"
+#import "ZGEditImageController.h"
 
 @interface ZGPicturePickerManager : NSObject
 
