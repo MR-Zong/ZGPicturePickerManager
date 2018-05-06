@@ -15,7 +15,8 @@
 
 @interface ZGEditImageViewController () <UIScrollViewAccessibilityDelegate,UIScrollViewDelegate,ZGClipViewDelegate>
 
-@property (nonatomic, strong) UIView * maskView;
+@property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIView *containView;
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) ZGClipView *clipView;
@@ -52,14 +53,16 @@
 
 - (void)setupViews
 {
-    _scrollView = [[UIScrollView alloc] init];
+    _containView = [[UIView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:_containView];
+    
+    _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     _scrollView.delegate = self;
-    _scrollView.frame = self.view.bounds;
     //隐藏滚动条
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:_scrollView];
+    [_containView addSubview:_scrollView];
     
     
     _imageView = [[UIImageView alloc] init];
@@ -221,26 +224,19 @@
 - (UIImage *)imageByClip:(UIImage *)image
 {
     UIImage* doneImage = nil;
-    UIGraphicsBeginImageContext(self.scrollView.contentSize);
+    UIGraphicsBeginImageContext(self.containView.bounds.size);
     {
-        CGPoint savedContentOffset = self.scrollView.contentOffset;
-        CGRect savedFrame = self.scrollView.frame;
-        self.scrollView.contentOffset = CGPointZero;
-        self.scrollView.frame = CGRectMake(0, 0, self.scrollView.contentSize.width, self.scrollView.contentSize.height);
-        
         CGContextRef context = UIGraphicsGetCurrentContext();
-        CGRect clipRect = CGRectMake(savedContentOffset.x + self.clipRect.origin.x, savedContentOffset.y + self.clipRect.origin.y, self.clipRect.size.width, self.clipRect.size.height);
+        CGRect clipRect = CGRectMake(self.clipRect.origin.x, self.clipRect.origin.y, self.clipRect.size.width, self.clipRect.size.height);
         CGContextAddRect(context, clipRect);
         CGContextClip(context);
         
-        [self.scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
+        [self.containView.layer renderInContext: UIGraphicsGetCurrentContext()];
         
         doneImage = UIGraphicsGetImageFromCurrentImageContext();
         CGImageRef imgRef = CGImageCreateWithImageInRect(doneImage.CGImage, clipRect);
         doneImage = [UIImage imageWithCGImage:imgRef];
         
-        self.scrollView.contentOffset = savedContentOffset;
-        self.scrollView.frame = savedFrame;
     }
     UIGraphicsEndImageContext();
     
@@ -252,5 +248,41 @@
     
     return doneImage;
 }
+
+#pragma mark - 直接从UIScrollView截图 ,缩小时候会解决不了
+//- (UIImage *)imageByClip:(UIImage *)image
+//{
+////    NSLog(@"contentOffset %@",NSStringFromCGPoint(self.scrollView.contentOffset));
+////     NSLog(@"contentSize %@",NSStringFromCGSize(self.scrollView.contentSize));
+//    UIImage* doneImage = nil;
+//    UIGraphicsBeginImageContext(self.scrollView.contentSize);
+//    {
+//        CGPoint savedContentOffset = self.scrollView.contentOffset;
+//        self.scrollView.contentOffset = CGPointZero;
+//        self.scrollView.frame = CGRectMake(0, 0, self.scrollView.contentSize.width, self.scrollView.contentSize.height);
+//
+//        CGContextRef context = UIGraphicsGetCurrentContext();
+//        CGRect clipRect = CGRectMake(savedContentOffset.x + self.clipRect.origin.x, savedContentOffset.y + self.clipRect.origin.y, self.clipRect.size.width, self.clipRect.size.height);
+//        CGContextAddRect(context, clipRect);
+//        CGContextClip(context);
+//
+//        [self.scrollView.layer renderInContext: UIGraphicsGetCurrentContext()];
+//
+//        doneImage = UIGraphicsGetImageFromCurrentImageContext();
+//        CGImageRef imgRef = CGImageCreateWithImageInRect(doneImage.CGImage, clipRect);
+//        doneImage = [UIImage imageWithCGImage:imgRef];
+//
+//        self.scrollView.contentOffset = savedContentOffset;
+//    }
+//    UIGraphicsEndImageContext();
+//
+//    /** test
+//     // write image to file
+//     NSData *imgData = UIImagePNGRepresentation(doneImage);
+//     [imgData writeToFile:@"/Users/kgfanxing/Desktop/doneImage.png" atomically:YES];
+//     */
+//
+//    return doneImage;
+//}
 
 @end
