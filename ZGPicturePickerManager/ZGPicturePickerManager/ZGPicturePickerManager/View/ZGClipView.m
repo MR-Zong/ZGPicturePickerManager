@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UIView *hLine1;
 @property (nonatomic, strong) UIView *hLine2;
 
+@property (nonatomic, assign) CGFloat remainSpace;
 
 
 @end
@@ -41,6 +42,8 @@
 - (instancetype)initWithClipTargetFrame:(CGRect)clipTargetFrame
 {
     if (self = [super initWithFrame:CGRectInset(clipTargetFrame, -ZGClipEdgeUserInteractiveSpaceUnit, -ZGClipEdgeUserInteractiveSpaceUnit)]) {
+        
+        _remainSpace = 2 * ZGCornerViewWidth;
         
         CGFloat unit = ZGClipEdgeUserInteractiveSpaceUnit;
         CGFloat width = self.bounds.size.width;
@@ -163,10 +166,21 @@
         
     }else if(pan.state == UIGestureRecognizerStateChanged){
         CGRect tmpFrame = self.frame;
+        
         tmpFrame.origin.y += translate.y;
         tmpFrame.size.height -= translate.y;
-        self.frame = tmpFrame;
         
+        // 限制
+        CGFloat maxY = CGRectGetMaxY(self.frame) - self.remainSpace;
+        if (tmpFrame.origin.y >= maxY) {
+            tmpFrame.origin.y = maxY;
+        }
+
+        if (tmpFrame.size.height <= self.remainSpace) {
+            tmpFrame.size.height = self.remainSpace;
+        }
+        self.frame = tmpFrame;
+
         [self updateSubviewsFrame];
         
     }else if(pan.state == UIGestureRecognizerStateEnded){
@@ -196,9 +210,22 @@
         //        self.frame = tmpFrame;
         
     }else if(pan.state == UIGestureRecognizerStateChanged){
+        
         CGRect tmpFrame = self.frame;
+        
         tmpFrame.origin.x += translate.x;
         tmpFrame.size.width -= translate.x;
+        
+        // 限制
+        CGFloat maxX = CGRectGetMaxX(self.frame) - self.remainSpace;
+        if (tmpFrame.origin.x >= maxX) {
+            tmpFrame.origin.x = maxX;
+        }
+
+        if (tmpFrame.size.width <= self.remainSpace) {
+            tmpFrame.size.width = self.remainSpace;
+        }
+
         self.frame = tmpFrame;
         
         [self updateSubviewsFrame];
@@ -230,8 +257,14 @@
         //        self.frame = tmpFrame;
         
     }else if(pan.state == UIGestureRecognizerStateChanged){
+        
         CGRect tmpFrame = self.frame;
         tmpFrame.size.height += translate.y;
+        // 限制
+        if (tmpFrame.size.height <= self.remainSpace) {
+            tmpFrame.size.height = self.remainSpace;
+        }
+
         self.frame = tmpFrame;
         
         [self updateSubviewsFrame];
@@ -265,6 +298,11 @@
     }else if(pan.state == UIGestureRecognizerStateChanged){
         CGRect tmpFrame = self.frame;
         tmpFrame.size.width += translate.x;
+        // 限制
+        if (tmpFrame.size.width <= self.remainSpace) {
+            tmpFrame.size.width = self.remainSpace;
+        }
+
         self.frame = tmpFrame;
         
         [self updateSubviewsFrame];
@@ -302,6 +340,24 @@
         tmpFrame.origin.y += translate.y;
         tmpFrame.size.width -= translate.x;
         tmpFrame.size.height -= translate.y;
+        
+        // 限制
+        CGFloat maxX = CGRectGetMaxX(self.frame) - self.remainSpace;
+        if (tmpFrame.origin.x >= maxX) {
+            tmpFrame.origin.x = maxX;
+        }
+        CGFloat maxY = CGRectGetMaxY(self.frame) - self.remainSpace;
+        if (tmpFrame.origin.y >= maxY) {
+            tmpFrame.origin.y = maxY;
+        }
+        if (tmpFrame.size.width <= self.remainSpace) {
+            tmpFrame.size.width = self.remainSpace;
+        }
+        if (tmpFrame.size.height <= self.remainSpace) {
+            tmpFrame.size.height = self.remainSpace;
+        }
+
+
         self.frame = tmpFrame;
         
         [self updateSubviewsFrame];
@@ -337,6 +393,19 @@
         tmpFrame.origin.x += translate.x;
         tmpFrame.size.width -= translate.x;
         tmpFrame.size.height += translate.y;
+        
+        // 限制
+        CGFloat maxX = CGRectGetMaxX(self.frame) - self.remainSpace;
+        if (tmpFrame.origin.x >= maxX) {
+            tmpFrame.origin.x = maxX;
+        }
+        if (tmpFrame.size.width <= self.remainSpace) {
+            tmpFrame.size.width = self.remainSpace;
+        }
+        if (tmpFrame.size.height <= self.remainSpace) {
+            tmpFrame.size.height = self.remainSpace;
+        }
+        
         self.frame = tmpFrame;
         
         [self updateSubviewsFrame];
@@ -372,6 +441,19 @@
         tmpFrame.origin.y += translate.y;
         tmpFrame.size.width += translate.x;
         tmpFrame.size.height -= translate.y;
+        
+        // 限制
+        CGFloat maxY = CGRectGetMaxY(self.frame) - self.remainSpace;
+        if (tmpFrame.origin.y >= maxY) {
+            tmpFrame.origin.y = maxY;
+        }
+        if (tmpFrame.size.width <= self.remainSpace) {
+            tmpFrame.size.width = self.remainSpace;
+        }
+        if (tmpFrame.size.height <= self.remainSpace) {
+            tmpFrame.size.height = self.remainSpace;
+        }
+        
         self.frame = tmpFrame;
         
         [self updateSubviewsFrame];
@@ -406,6 +488,15 @@
         CGRect tmpFrame = self.frame;
         tmpFrame.size.width += translate.x;
         tmpFrame.size.height += translate.y;
+        
+        // 限制
+        if (tmpFrame.size.width <= self.remainSpace) {
+            tmpFrame.size.width = self.remainSpace;
+        }
+        if (tmpFrame.size.height <= self.remainSpace) {
+            tmpFrame.size.height = self.remainSpace;
+        }
+        
         self.frame = tmpFrame;
         [self updateSubviewsFrame];
         
