@@ -48,30 +48,46 @@
         
         // edge line
         _topELine = [[ZGEdgeLineView alloc] initWithType:ZGEdgeLineViewTypeHorizontal frame:CGRectMake(unit, 0, width - 2*unit, ZGEdgeLineViewHeight)];
+        UIPanGestureRecognizer *telPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didTelPan:)];
+        [_topELine addGestureRecognizer:telPan];
         [self addSubview:_topELine];
         
         _leftELine = [[ZGEdgeLineView alloc] initWithType:ZGEdgeLineViewTypeVertical frame:CGRectMake(0, unit, ZGEdgeLineViewWidth, height - 2*unit)];
+        UIPanGestureRecognizer *lelPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didLelPan:)];
+        [_leftELine addGestureRecognizer:lelPan];
         [self addSubview:_leftELine];
         
         _bottomELine = [[ZGEdgeLineView alloc] initWithType:ZGEdgeLineViewTypeHorizontal frame:CGRectMake(unit, height - ZGEdgeLineViewHeight, width - 2*unit, ZGEdgeLineViewHeight)];
+        UIPanGestureRecognizer *belPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didBelPan:)];
+        [_bottomELine addGestureRecognizer:belPan];
         [self addSubview:_bottomELine];
         
         _rightELine = [[ZGEdgeLineView alloc] initWithType:ZGEdgeLineViewTypeVertical frame:CGRectMake(width - ZGEdgeLineViewWidth, unit, ZGEdgeLineViewWidth, height - 2*unit)];
+        UIPanGestureRecognizer *relPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didRelPan:)];
+        [_rightELine addGestureRecognizer:relPan];
         [self addSubview:_rightELine];
         
         
         // corner view
         CGFloat space = ZGCornerViewLineSpace;
         _tlCornerView = [[ZGCornerView alloc] initWithType:ZGCornerViewTypeTopLeft frame:CGRectMake(unit - space , unit - space, ZGCornerViewWidth, ZGCornerViewHeight)];
+        UIPanGestureRecognizer *tlCornerPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didTlCornerViewPan:)];
+        [_tlCornerView addGestureRecognizer:tlCornerPan];
         [self addSubview:_tlCornerView];
         
         _blCornerView = [[ZGCornerView alloc] initWithType:ZGCornerViewTypeBottomLeft frame:CGRectMake(unit - space, height - ZGCornerViewHeight - unit + space, ZGCornerViewWidth, ZGCornerViewHeight)];
+        UIPanGestureRecognizer *blCornerPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didBlCornerViewPan:)];
+        [_blCornerView addGestureRecognizer:blCornerPan];
         [self addSubview:_blCornerView];
         
         _trCornerView = [[ZGCornerView alloc] initWithType:ZGCornerViewTypeTopRight frame:CGRectMake(width - ZGCornerViewWidth - unit + space, unit - space, ZGCornerViewWidth, ZGCornerViewHeight)];
+        UIPanGestureRecognizer *tRCornerPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didTrCornerViewPan:)];
+        [_trCornerView addGestureRecognizer:tRCornerPan];
         [self addSubview:_trCornerView];
         
         _brCornerView = [[ZGCornerView alloc] initWithType:ZGCornerViewTypeBottomRight frame:CGRectMake(width - ZGCornerViewWidth - unit + space, height - ZGCornerViewHeight - unit + space, ZGCornerViewWidth, ZGCornerViewHeight)];
+        UIPanGestureRecognizer *brCornerPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didBrCornerViewPan:)];
+        [_brCornerView addGestureRecognizer:brCornerPan];
         [self addSubview:_brCornerView];
         
         // indicate line
@@ -93,6 +109,333 @@
         
     }
     return self;
+}
+
+
+- (void)updateSubviewsFrame
+{
+    CGFloat unit = ZGEdgeLineViewUserInteractiveSpaceUnit;
+    CGFloat width = self.bounds.size.width;
+    CGFloat height = self.bounds.size.height;
+    
+    // edge line
+    _topELine.frame = CGRectMake(unit, 0, width - 2*unit, ZGEdgeLineViewHeight);
+    
+    _leftELine.frame = CGRectMake(0, unit, ZGEdgeLineViewWidth, height - 2*unit);
+    
+    _bottomELine.frame = CGRectMake(unit, height - ZGEdgeLineViewHeight, width - 2*unit, ZGEdgeLineViewHeight);
+    
+    _rightELine.frame = CGRectMake(width - ZGEdgeLineViewWidth, unit, ZGEdgeLineViewWidth, height - 2*unit);
+    
+    
+    // corner view
+    CGFloat space = ZGCornerViewLineSpace;
+    _tlCornerView.frame = CGRectMake(unit - space , unit - space, ZGCornerViewWidth, ZGCornerViewHeight);
+    
+    _blCornerView.frame = CGRectMake(unit - space, height - ZGCornerViewHeight - unit + space, ZGCornerViewWidth, ZGCornerViewHeight);
+    
+    _trCornerView.frame = CGRectMake(width - ZGCornerViewWidth - unit + space, unit - space, ZGCornerViewWidth, ZGCornerViewHeight);
+    
+    _brCornerView.frame = CGRectMake(width - ZGCornerViewWidth - unit + space, height - ZGCornerViewHeight - unit + space, ZGCornerViewWidth, ZGCornerViewHeight);
+    
+    // indicate line
+    _vLine1.frame = CGRectMake(width / 3.0, unit, 0.5, height - 2*unit);
+    
+    _vLine2.frame = CGRectMake(width*(2 / 3.0), unit, 0.5, height - 2*unit);
+    
+    
+    _hLine1.frame = CGRectMake(unit, height / 3.0, width - 2*unit, 0.5);
+    
+    _hLine2.frame = CGRectMake(unit, height* (2 / 3.0), width - 2*unit, 0.5);
+    
+}
+
+#pragma mark Gesture
+// topEdgeLine
+- (void)didTelPan:(UIPanGestureRecognizer *)pan
+{
+    CGPoint translate = [pan translationInView:self];
+//    NSLog(@"translate %@",NSStringFromCGPoint(translate));
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        
+//        CGRect tmpFrame = self.frame;
+//        tmpFrame.origin.y += translate.y;
+//        tmpFrame.size.height -= translate.y;
+//        self.frame = tmpFrame;
+        
+    }else if(pan.state == UIGestureRecognizerStateChanged){
+        CGRect tmpFrame = self.frame;
+        tmpFrame.origin.y += translate.y;
+        tmpFrame.size.height -= translate.y;
+        self.frame = tmpFrame;
+        
+        [self updateSubviewsFrame];
+        
+    }else if(pan.state == UIGestureRecognizerStateEnded){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+
+    }else if(pan.state == UIGestureRecognizerStateCancelled){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+    }
+    
+    [pan setTranslation:CGPointZero inView:pan.view];
+}
+
+// leftEdgeLine
+- (void)didLelPan:(UIPanGestureRecognizer *)pan
+{
+    CGPoint translate = [pan translationInView:self];
+    //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        
+        //        CGRect tmpFrame = self.frame;
+        //        tmpFrame.origin.y += translate.y;
+        //        tmpFrame.size.height -= translate.y;
+        //        self.frame = tmpFrame;
+        
+    }else if(pan.state == UIGestureRecognizerStateChanged){
+        CGRect tmpFrame = self.frame;
+        tmpFrame.origin.x += translate.x;
+        tmpFrame.size.width -= translate.x;
+        self.frame = tmpFrame;
+        
+        [self updateSubviewsFrame];
+        
+    }else if(pan.state == UIGestureRecognizerStateEnded){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+        
+    }else if(pan.state == UIGestureRecognizerStateCancelled){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+    }
+    
+    [pan setTranslation:CGPointZero inView:pan.view];
+}
+
+// bottomEdgeLine
+- (void)didBelPan:(UIPanGestureRecognizer *)pan
+{
+    CGPoint translate = [pan translationInView:self];
+    //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        
+        //        CGRect tmpFrame = self.frame;
+        //        tmpFrame.origin.y += translate.y;
+        //        tmpFrame.size.height -= translate.y;
+        //        self.frame = tmpFrame;
+        
+    }else if(pan.state == UIGestureRecognizerStateChanged){
+        CGRect tmpFrame = self.frame;
+        tmpFrame.size.height += translate.y;
+        self.frame = tmpFrame;
+        
+        [self updateSubviewsFrame];
+        
+    }else if(pan.state == UIGestureRecognizerStateEnded){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+        
+    }else if(pan.state == UIGestureRecognizerStateCancelled){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+    }
+    
+    [pan setTranslation:CGPointZero inView:pan.view];
+}
+
+// rightEdgeLine
+- (void)didRelPan:(UIPanGestureRecognizer *)pan
+{
+    CGPoint translate = [pan translationInView:self];
+    //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        
+        //        CGRect tmpFrame = self.frame;
+        //        tmpFrame.origin.y += translate.y;
+        //        tmpFrame.size.height -= translate.y;
+        //        self.frame = tmpFrame;
+        
+    }else if(pan.state == UIGestureRecognizerStateChanged){
+        CGRect tmpFrame = self.frame;
+        tmpFrame.size.width += translate.x;
+        self.frame = tmpFrame;
+        
+        [self updateSubviewsFrame];
+        
+    }else if(pan.state == UIGestureRecognizerStateEnded){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+        
+    }else if(pan.state == UIGestureRecognizerStateCancelled){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+    }
+    
+    [pan setTranslation:CGPointZero inView:pan.view];
+}
+
+#pragma mark - pan cornerView
+// tlCornerView
+- (void)didTlCornerViewPan:(UIPanGestureRecognizer *)pan
+{
+    CGPoint translate = [pan translationInView:self];
+    //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        
+        //        CGRect tmpFrame = self.frame;
+        //        tmpFrame.origin.y += translate.y;
+        //        tmpFrame.size.height -= translate.y;
+        //        self.frame = tmpFrame;
+        
+    }else if(pan.state == UIGestureRecognizerStateChanged){
+        CGRect tmpFrame = self.frame;
+        tmpFrame.origin.x += translate.x;
+        tmpFrame.origin.y += translate.y;
+        tmpFrame.size.width -= translate.x;
+        tmpFrame.size.height -= translate.y;
+        self.frame = tmpFrame;
+        
+        [self updateSubviewsFrame];
+        
+    }else if(pan.state == UIGestureRecognizerStateEnded){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+        
+    }else if(pan.state == UIGestureRecognizerStateCancelled){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+    }
+    
+    [pan setTranslation:CGPointZero inView:pan.view];
+}
+
+// BlCornerViewPan
+- (void)didBlCornerViewPan:(UIPanGestureRecognizer *)pan
+{
+    CGPoint translate = [pan translationInView:self];
+    //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        
+        //        CGRect tmpFrame = self.frame;
+        //        tmpFrame.origin.y += translate.y;
+        //        tmpFrame.size.height -= translate.y;
+        //        self.frame = tmpFrame;
+        
+    }else if(pan.state == UIGestureRecognizerStateChanged){
+        CGRect tmpFrame = self.frame;
+        tmpFrame.origin.x += translate.x;
+        tmpFrame.size.width -= translate.x;
+        tmpFrame.size.height += translate.y;
+        self.frame = tmpFrame;
+        
+        [self updateSubviewsFrame];
+        
+    }else if(pan.state == UIGestureRecognizerStateEnded){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+        
+    }else if(pan.state == UIGestureRecognizerStateCancelled){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+    }
+    
+    [pan setTranslation:CGPointZero inView:pan.view];
+}
+
+// TRCornerViewPan
+- (void)didTrCornerViewPan:(UIPanGestureRecognizer *)pan
+{
+    CGPoint translate = [pan translationInView:self];
+    //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        
+        //        CGRect tmpFrame = self.frame;
+        //        tmpFrame.origin.y += translate.y;
+        //        tmpFrame.size.height -= translate.y;
+        //        self.frame = tmpFrame;
+        
+    }else if(pan.state == UIGestureRecognizerStateChanged){
+        CGRect tmpFrame = self.frame;
+        tmpFrame.origin.y += translate.y;
+        tmpFrame.size.width += translate.x;
+        tmpFrame.size.height -= translate.y;
+        self.frame = tmpFrame;
+        
+        [self updateSubviewsFrame];
+        
+    }else if(pan.state == UIGestureRecognizerStateEnded){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+        
+    }else if(pan.state == UIGestureRecognizerStateCancelled){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+    }
+    
+    [pan setTranslation:CGPointZero inView:pan.view];
+}
+
+// BRCornerViewPan
+- (void)didBrCornerViewPan:(UIPanGestureRecognizer *)pan
+{
+    CGPoint translate = [pan translationInView:self];
+    //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        
+        //        CGRect tmpFrame = self.frame;
+        //        tmpFrame.origin.y += translate.y;
+        //        tmpFrame.size.height -= translate.y;
+        //        self.frame = tmpFrame;
+        
+    }else if(pan.state == UIGestureRecognizerStateChanged){
+        CGRect tmpFrame = self.frame;
+        tmpFrame.size.width += translate.x;
+        tmpFrame.size.height += translate.y;
+        self.frame = tmpFrame;
+        [self updateSubviewsFrame];
+        
+    }else if(pan.state == UIGestureRecognizerStateEnded){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+        
+    }else if(pan.state == UIGestureRecognizerStateCancelled){
+        if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
+            [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
+        }
+    }
+    
+    [pan setTranslation:CGPointZero inView:pan.view];
+}
+
+
+
+#pragma mark - hittest
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    UIView *v = [super hitTest:point withEvent:event];
+    if (v == self) {
+        return nil;
+    }else {
+        return v;
+    }
 }
 
 

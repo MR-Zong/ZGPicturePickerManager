@@ -16,6 +16,7 @@ CGFloat const ZGEdgeLineViewHeight = ZGEdgeLineViewWidth;
 @interface ZGEdgeLineView ()
 
 @property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, assign) ZGEdgeLineViewType type;
 
 @end
 
@@ -25,6 +26,8 @@ CGFloat const ZGEdgeLineViewHeight = ZGEdgeLineViewWidth;
 - (instancetype)initWithType:(ZGEdgeLineViewType)type frame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        
+        _type = type;
         
         if (type == ZGEdgeLineViewTypeHorizontal) {
             
@@ -37,6 +40,18 @@ CGFloat const ZGEdgeLineViewHeight = ZGEdgeLineViewWidth;
 
     }
     return self;
+}
+
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    
+    if (self.type == ZGEdgeLineViewTypeHorizontal) {
+        
+        _lineView.frame = CGRectMake(0, ZGEdgeLineViewUserInteractiveSpaceUnit, self.bounds.size.width, ZGEdgeLineHeight);
+    }else {
+        _lineView.frame = CGRectMake(ZGEdgeLineViewUserInteractiveSpaceUnit, 0, 1, self.bounds.size.height);
+    }
 }
 
 @end

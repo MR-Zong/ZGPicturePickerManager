@@ -13,8 +13,9 @@
 #define ZGSCREENWIDTH [UIScreen mainScreen].bounds.size.width
 
 
-@interface ZGEditImageViewController () <UIScrollViewAccessibilityDelegate,UIScrollViewDelegate>
+@interface ZGEditImageViewController () <UIScrollViewAccessibilityDelegate,UIScrollViewDelegate,ZGClipViewDelegate>
 
+@property (nonatomic, strong) UIView * maskView;
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) ZGClipView *clipView;
@@ -80,13 +81,32 @@
     _scrollView.minimumZoomScale = 0.5;
     _scrollView.contentSize=_imageView.frame.size;
     
-    // 遮罩
+    // clipRect
+    if (self.cornerRadius < 0) {
+        self.cornerRadius = 0;
+    }
+
+    CGFloat width = self.view.bounds.size.width;
+    CGFloat height = self.view.bounds.size.height;
+    if (self.clipSize.width > 0 && self.clipSize.height > 0) {
+        self.clipRect = CGRectMake((width-self.clipSize.width)/2.0, (height - self.clipSize.height)/2.0, self.clipSize.width, self.clipSize.height);
+    }else {
+        self.clipRect = CGRectMake(20, (height - 200) / 2.0, width - 2 * 20, 200);
+    }
+
+    // MaskView
     if (self.noClipMask == NO) {
-        [self addMaskView];
+        _maskView = [[UIView alloc] initWithFrame:self.view.bounds];
+        // 必须设置为NO
+        _maskView.userInteractionEnabled = NO;
+        [_maskView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.7]];
+        [self.view addSubview:_maskView];
+        [self especialMaskView:_maskView transparentRect:self.clipRect cornerRadius:self.cornerRadius];
     }
     
     // clipView
     _clipView = [[ZGClipView alloc] initWithClipTargetFrame:self.clipRect];
+    _clipView.delegate = self;
     [self.view addSubview:_clipView];
 
     
@@ -113,18 +133,23 @@
 }
 
 
+#pragma mark - ZGClipViewDelegate
+- (void)clipView:(ZGClipView *)clipView didPanEndWithClipViewRect:(CGRect)clipViewRect
+{
+    self.clipRect = CGRectInset(clipViewRect, ZGEdgeLineViewUserInteractiveSpaceUnit, ZGEdgeLineViewUserInteractiveSpaceUnit);
+    [self especialMaskView:self.maskView transparentRect:self.clipRect cornerRadius:self.cornerRadius];
+}
+
 
 #pragma mark - addMask
-- (void)addMaskView
+/**
+ * @pramga transparentRect : 透明的rect
+ * @pramga cornerRadius : 圆角半径
+ */
+- (void)especialMaskView:(UIView *)maskView transparentRect:(CGRect)transparentRect cornerRadius:(CGFloat)cornerRadius
 {
-    CGFloat width = self.view.bounds.size.width;
-    CGFloat height = self.view.bounds.size.height;
-    
-    UIView * maskView = [[UIView alloc] initWithFrame:self.view.bounds];
-    // 必须设置为NO
-    maskView.userInteractionEnabled = NO;
-    [maskView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.7]];
-    [self.view addSubview:maskView];
+    CGFloat width = maskView.bounds.size.width;
+    CGFloat height = maskView.bounds.size.height;
     
     //create path
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, width, height)];
@@ -133,16 +158,8 @@
     //    [path appendPath:[UIBezierPath bezierPathWithArcCenter:CGPointMake(width / 2, 200) radius:100 startAngle:0 endAngle:2*M_PI clockwise:NO]];
     
     // MARK: roundRectanglePath
-    if (self.clipSize.width > 0 && self.clipSize.height > 0) {
-        self.clipRect = CGRectMake((width-self.clipSize.width)/2.0, (height - self.clipSize.height)/2.0, self.clipSize.width, self.clipSize.height);
-    }else {
-        self.clipRect = CGRectMake(20, (height - 200) / 2.0, width - 2 * 20, 200);
-    }
-    if (self.cornerRadius < 0) {
-        self.cornerRadius = 0;
-    }
-    [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:self.clipRect
-                                                 cornerRadius:self.cornerRadius] bezierPathByReversingPath]];
+    [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:transparentRect
+                                                 cornerRadius:cornerRadius] bezierPathByReversingPath]];
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = path.CGPath;
