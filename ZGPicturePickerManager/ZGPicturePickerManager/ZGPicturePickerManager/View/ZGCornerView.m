@@ -7,10 +7,13 @@
 //
 
 #import "ZGCornerView.h"
+#import "ZGEdgeLineView.h"
+#import "ZGClipEdgeSpaceDefine.h"
 
 CGFloat const ZGCornerViewLineSpace = 3;
-CGFloat const ZGCornerViewWidth = 20;
+CGFloat const ZGCornerViewWidth = ZGClipEdgeUserInteractiveSpaceUnit * 3 + ZGCornerViewLineSpace;
 CGFloat const ZGCornerViewHeight = ZGCornerViewWidth;
+CGFloat const ZGCornerViewLineLength = ZGCornerViewWidth - ZGClipEdgeUserInteractiveSpaceUnit + ZGCornerViewLineSpace;
 
 
 @interface ZGCornerView ()
@@ -30,24 +33,28 @@ CGFloat const ZGCornerViewHeight = ZGCornerViewWidth;
         CGFloat width = self.bounds.size.width;
         CGFloat height = self.bounds.size.height;
         
+        CGFloat unit = ZGClipEdgeUserInteractiveSpaceUnit;
+        CGFloat len = ZGCornerViewLineLength;
+        CGFloat space = ZGCornerViewLineSpace;
+        
         if (type == ZGCornerViewTypeTopLeft) {
-            _hView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, ZGCornerViewLineSpace)];
-            _vView = [[UIView alloc] initWithFrame:CGRectMake(0, ZGCornerViewLineSpace, ZGCornerViewLineSpace, height - ZGCornerViewLineSpace)];
+            _hView = [[UIView alloc] initWithFrame:CGRectMake(unit -space, unit-space, len, space)];
+            _vView = [[UIView alloc] initWithFrame:CGRectMake(unit -space, unit, space, len - space)];
             
         }else if (type == ZGCornerViewTypeBottomLeft) {
             
-            _hView = [[UIView alloc] initWithFrame:CGRectMake(0, height - ZGCornerViewLineSpace, width, ZGCornerViewLineSpace)];
-            _vView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ZGCornerViewLineSpace, height - ZGCornerViewLineSpace)];
+            _hView = [[UIView alloc] initWithFrame:CGRectMake(unit-space, height - unit, len, space)];
+            _vView = [[UIView alloc] initWithFrame:CGRectMake(unit-space, 0, space, len -space)];
             
         }else if (type == ZGCornerViewTypeTopRight) {
             
-            _hView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, ZGCornerViewLineSpace)];
-            _vView = [[UIView alloc] initWithFrame:CGRectMake(width - ZGCornerViewLineSpace, 0, ZGCornerViewLineSpace, height - ZGCornerViewLineSpace)];
+            _hView = [[UIView alloc] initWithFrame:CGRectMake(0, unit - space, len, space)];
+            _vView = [[UIView alloc] initWithFrame:CGRectMake(width - unit, unit, space, len - space)];
             
         }else if (type == ZGCornerViewTypeBottomRight) {
             
-            _hView = [[UIView alloc] initWithFrame:CGRectMake(0, height - ZGCornerViewLineSpace, width, ZGCornerViewLineSpace)];
-            _vView = [[UIView alloc] initWithFrame:CGRectMake(width - ZGCornerViewLineSpace, 0, ZGCornerViewLineSpace, height - ZGCornerViewLineSpace)];
+            _hView = [[UIView alloc] initWithFrame:CGRectMake(0, height - unit, len, space)];
+            _vView = [[UIView alloc] initWithFrame:CGRectMake(width - unit, 0, space, len - space)];
             
         }
         

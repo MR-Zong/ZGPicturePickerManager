@@ -40,9 +40,9 @@
 
 - (instancetype)initWithClipTargetFrame:(CGRect)clipTargetFrame
 {
-    if (self = [super initWithFrame:CGRectInset(clipTargetFrame, -ZGEdgeLineViewUserInteractiveSpaceUnit, -ZGEdgeLineViewUserInteractiveSpaceUnit)]) {
+    if (self = [super initWithFrame:CGRectInset(clipTargetFrame, -ZGClipEdgeUserInteractiveSpaceUnit, -ZGClipEdgeUserInteractiveSpaceUnit)]) {
         
-        CGFloat unit = ZGEdgeLineViewUserInteractiveSpaceUnit;
+        CGFloat unit = ZGClipEdgeUserInteractiveSpaceUnit;
         CGFloat width = self.bounds.size.width;
         CGFloat height = self.bounds.size.height;
         
@@ -69,23 +69,22 @@
         
         
         // corner view
-        CGFloat space = ZGCornerViewLineSpace;
-        _tlCornerView = [[ZGCornerView alloc] initWithType:ZGCornerViewTypeTopLeft frame:CGRectMake(unit - space , unit - space, ZGCornerViewWidth, ZGCornerViewHeight)];
+        _tlCornerView = [[ZGCornerView alloc] initWithType:ZGCornerViewTypeTopLeft frame:CGRectMake(0 , 0, ZGCornerViewWidth, ZGCornerViewHeight)];
         UIPanGestureRecognizer *tlCornerPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didTlCornerViewPan:)];
         [_tlCornerView addGestureRecognizer:tlCornerPan];
         [self addSubview:_tlCornerView];
         
-        _blCornerView = [[ZGCornerView alloc] initWithType:ZGCornerViewTypeBottomLeft frame:CGRectMake(unit - space, height - ZGCornerViewHeight - unit + space, ZGCornerViewWidth, ZGCornerViewHeight)];
+        _blCornerView = [[ZGCornerView alloc] initWithType:ZGCornerViewTypeBottomLeft frame:CGRectMake(0, height - ZGCornerViewHeight, ZGCornerViewWidth, ZGCornerViewHeight)];
         UIPanGestureRecognizer *blCornerPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didBlCornerViewPan:)];
         [_blCornerView addGestureRecognizer:blCornerPan];
         [self addSubview:_blCornerView];
         
-        _trCornerView = [[ZGCornerView alloc] initWithType:ZGCornerViewTypeTopRight frame:CGRectMake(width - ZGCornerViewWidth - unit + space, unit - space, ZGCornerViewWidth, ZGCornerViewHeight)];
+        _trCornerView = [[ZGCornerView alloc] initWithType:ZGCornerViewTypeTopRight frame:CGRectMake(width - ZGCornerViewWidth, 0, ZGCornerViewWidth, ZGCornerViewHeight)];
         UIPanGestureRecognizer *tRCornerPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didTrCornerViewPan:)];
         [_trCornerView addGestureRecognizer:tRCornerPan];
         [self addSubview:_trCornerView];
         
-        _brCornerView = [[ZGCornerView alloc] initWithType:ZGCornerViewTypeBottomRight frame:CGRectMake(width - ZGCornerViewWidth - unit + space, height - ZGCornerViewHeight - unit + space, ZGCornerViewWidth, ZGCornerViewHeight)];
+        _brCornerView = [[ZGCornerView alloc] initWithType:ZGCornerViewTypeBottomRight frame:CGRectMake(width - ZGCornerViewWidth, height - ZGCornerViewHeight, ZGCornerViewWidth, ZGCornerViewHeight)];
         UIPanGestureRecognizer *brCornerPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didBrCornerViewPan:)];
         [_brCornerView addGestureRecognizer:brCornerPan];
         [self addSubview:_brCornerView];
@@ -114,7 +113,7 @@
 
 - (void)updateSubviewsFrame
 {
-    CGFloat unit = ZGEdgeLineViewUserInteractiveSpaceUnit;
+    CGFloat unit = ZGClipEdgeUserInteractiveSpaceUnit;
     CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
     
@@ -129,14 +128,13 @@
     
     
     // corner view
-    CGFloat space = ZGCornerViewLineSpace;
-    _tlCornerView.frame = CGRectMake(unit - space , unit - space, ZGCornerViewWidth, ZGCornerViewHeight);
+    _tlCornerView.frame = CGRectMake(0 , 0, ZGCornerViewWidth, ZGCornerViewHeight);
     
-    _blCornerView.frame = CGRectMake(unit - space, height - ZGCornerViewHeight - unit + space, ZGCornerViewWidth, ZGCornerViewHeight);
+    _blCornerView.frame = CGRectMake(0, height - ZGCornerViewHeight, ZGCornerViewWidth, ZGCornerViewHeight);
     
-    _trCornerView.frame = CGRectMake(width - ZGCornerViewWidth - unit + space, unit - space, ZGCornerViewWidth, ZGCornerViewHeight);
+    _trCornerView.frame = CGRectMake(width - ZGCornerViewWidth, 0, ZGCornerViewWidth, ZGCornerViewHeight);
     
-    _brCornerView.frame = CGRectMake(width - ZGCornerViewWidth - unit + space, height - ZGCornerViewHeight - unit + space, ZGCornerViewWidth, ZGCornerViewHeight);
+    _brCornerView.frame = CGRectMake(width - ZGCornerViewWidth, height - ZGCornerViewHeight, ZGCornerViewWidth, ZGCornerViewHeight);
     
     // indicate line
     _vLine1.frame = CGRectMake(width / 3.0, unit, 0.5, height - 2*unit);

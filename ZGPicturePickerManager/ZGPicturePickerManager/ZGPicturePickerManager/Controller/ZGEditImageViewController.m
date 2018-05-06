@@ -136,7 +136,7 @@
 #pragma mark - ZGClipViewDelegate
 - (void)clipView:(ZGClipView *)clipView didPanEndWithClipViewRect:(CGRect)clipViewRect
 {
-    self.clipRect = CGRectInset(clipViewRect, ZGEdgeLineViewUserInteractiveSpaceUnit, ZGEdgeLineViewUserInteractiveSpaceUnit);
+    self.clipRect = CGRectInset(clipViewRect, ZGClipEdgeUserInteractiveSpaceUnit, ZGClipEdgeUserInteractiveSpaceUnit);
     [self especialMaskView:self.maskView transparentRect:self.clipRect cornerRadius:self.cornerRadius];
 }
 

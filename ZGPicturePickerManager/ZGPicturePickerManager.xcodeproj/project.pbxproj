@@ -23,6 +23,7 @@
 		EFEEE3A4209D9481003BD020 /* ZGClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEEE3A3209D9481003BD020 /* ZGClipView.m */; };
 		EFEEE3A7209D95BA003BD020 /* ZGEdgeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEEE3A6209D95BA003BD020 /* ZGEdgeLineView.m */; };
 		EFEEE3AA209D95CF003BD020 /* ZGCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEEE3A9209D95CF003BD020 /* ZGCornerView.m */; };
+		EFEEE3B0209ED055003BD020 /* ZGClipEdgeSpaceDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEEE3AF209ED055003BD020 /* ZGClipEdgeSpaceDefine.m */; };
 		EFF3F8921C84265700ECC468 /* ZGPicturePickerManager.gif in Resources */ = {isa = PBXBuildFile; fileRef = EFF3F8911C84265700ECC468 /* ZGPicturePickerManager.gif */; };
 		EFFF9E80202AA94F009FDCEA /* ZGPicturePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFF9E7F202AA94F009FDCEA /* ZGPicturePickerManager.m */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,8 @@
 		EFEEE3A6209D95BA003BD020 /* ZGEdgeLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGEdgeLineView.m; sourceTree = "<group>"; };
 		EFEEE3A8209D95CF003BD020 /* ZGCornerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGCornerView.h; sourceTree = "<group>"; };
 		EFEEE3A9209D95CF003BD020 /* ZGCornerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGCornerView.m; sourceTree = "<group>"; };
+		EFEEE3AE209ED055003BD020 /* ZGClipEdgeSpaceDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGClipEdgeSpaceDefine.h; sourceTree = "<group>"; };
+		EFEEE3AF209ED055003BD020 /* ZGClipEdgeSpaceDefine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGClipEdgeSpaceDefine.m; sourceTree = "<group>"; };
 		EFF3F8911C84265700ECC468 /* ZGPicturePickerManager.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ZGPicturePickerManager.gif; sourceTree = "<group>"; };
 		EFFF9E7E202AA94F009FDCEA /* ZGPicturePickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPicturePickerManager.h; sourceTree = "<group>"; };
 		EFFF9E7F202AA94F009FDCEA /* ZGPicturePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGPicturePickerManager.m; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 				EFEEE3A6209D95BA003BD020 /* ZGEdgeLineView.m */,
 				EFEEE3A8209D95CF003BD020 /* ZGCornerView.h */,
 				EFEEE3A9209D95CF003BD020 /* ZGCornerView.m */,
+				EFEEE3AE209ED055003BD020 /* ZGClipEdgeSpaceDefine.h */,
+				EFEEE3AF209ED055003BD020 /* ZGClipEdgeSpaceDefine.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 			files = (
 				EFB70BD71C805F5700AC9A83 /* NJKWebViewProgress.m in Sources */,
 				EFD5160E1C7ED642003361BC /* ViewController.m in Sources */,
+				EFEEE3B0209ED055003BD020 /* ZGClipEdgeSpaceDefine.m in Sources */,
 				EFD516401C7F0E46003361BC /* MYQLocationManager.m in Sources */,
 				EFB70BD11C805F2D00AC9A83 /* ZGWebViewWithProgress.m in Sources */,
 				EFB70BCC1C7FEF7200AC9A83 /* ZGEditImageViewController.m in Sources */,

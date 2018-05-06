@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-UIKIT_EXTERN CGFloat const ZGCornerViewLineSpace;
 UIKIT_EXTERN CGFloat const ZGCornerViewWidth;
 UIKIT_EXTERN CGFloat const ZGCornerViewHeight;
 

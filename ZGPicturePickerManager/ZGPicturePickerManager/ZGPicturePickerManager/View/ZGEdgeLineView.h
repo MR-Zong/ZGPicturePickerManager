@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZGClipEdgeSpaceDefine.h"
 
 UIKIT_EXTERN CGFloat const ZGEdgeLineViewWidth;
 UIKIT_EXTERN CGFloat const ZGEdgeLineViewHeight;
-UIKIT_EXTERN CGFloat const ZGEdgeLineViewUserInteractiveSpaceUnit;
 
 
 typedef NS_ENUM(NSInteger,ZGEdgeLineViewType) {

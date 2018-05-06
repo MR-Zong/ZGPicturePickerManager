@@ -8,9 +8,8 @@
 
 #import "ZGEdgeLineView.h"
 
-CGFloat const ZGEdgeLineHeight = 1;
-CGFloat const ZGEdgeLineViewUserInteractiveSpaceUnit = 10.0;
-CGFloat const ZGEdgeLineViewWidth = 2*ZGEdgeLineViewUserInteractiveSpaceUnit + 1;
+CGFloat const ZGEdgeLineHeight = 1.0;
+CGFloat const ZGEdgeLineViewWidth = 2*ZGClipEdgeUserInteractiveSpaceUnit + 1;
 CGFloat const ZGEdgeLineViewHeight = ZGEdgeLineViewWidth;
 
 @interface ZGEdgeLineView ()
@@ -31,9 +30,9 @@ CGFloat const ZGEdgeLineViewHeight = ZGEdgeLineViewWidth;
         
         if (type == ZGEdgeLineViewTypeHorizontal) {
             
-            _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, ZGEdgeLineViewUserInteractiveSpaceUnit, self.bounds.size.width, ZGEdgeLineHeight)];
+            _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, ZGClipEdgeUserInteractiveSpaceUnit, self.bounds.size.width, ZGEdgeLineHeight)];
         }else {
-            _lineView = [[UIView alloc] initWithFrame:CGRectMake(ZGEdgeLineViewUserInteractiveSpaceUnit, 0, 1, self.bounds.size.height)];
+            _lineView = [[UIView alloc] initWithFrame:CGRectMake(ZGClipEdgeUserInteractiveSpaceUnit, 0, 1, self.bounds.size.height)];
         }
         _lineView.backgroundColor = [UIColor whiteColor];
         [self addSubview:_lineView];
@@ -48,9 +47,9 @@ CGFloat const ZGEdgeLineViewHeight = ZGEdgeLineViewWidth;
     
     if (self.type == ZGEdgeLineViewTypeHorizontal) {
         
-        _lineView.frame = CGRectMake(0, ZGEdgeLineViewUserInteractiveSpaceUnit, self.bounds.size.width, ZGEdgeLineHeight);
+        _lineView.frame = CGRectMake(0, ZGClipEdgeUserInteractiveSpaceUnit, self.bounds.size.width, ZGEdgeLineHeight);
     }else {
-        _lineView.frame = CGRectMake(ZGEdgeLineViewUserInteractiveSpaceUnit, 0, 1, self.bounds.size.height);
+        _lineView.frame = CGRectMake(ZGClipEdgeUserInteractiveSpaceUnit, 0, 1, self.bounds.size.height);
     }
 }
 
