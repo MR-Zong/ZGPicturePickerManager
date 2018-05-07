@@ -200,10 +200,8 @@
             self.completionBlock(self.image,self.info, nil);
         }else {
             [self imageByClip:self.image completeBlock:^(UIImage *image, PHAsset *photoAsset) {
-                NSLog(@"thread %@",[NSThread currentThread]);
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    self.completionBlock(image, self.info, photoAsset);
-                });
+                
+                self.completionBlock(image, self.info, photoAsset);
             }];
         }
         
@@ -251,9 +249,14 @@
     // 是否保存到相册
     if (self.isSaveToAlbum) {
         [self saveImageInAlbum:doneImage completeBlock:^(PHAsset *photoAsset) {
-            if (completeBlock) {
-                completeBlock(doneImage, photoAsset);
-            }
+            
+            NSLog(@"thread %@",[NSThread currentThread]);
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                
+                if (completeBlock) {
+                    completeBlock(doneImage, photoAsset);
+                }
+            });
         }];
     }else {
         if (completeBlock) {
