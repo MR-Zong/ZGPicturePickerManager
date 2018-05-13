@@ -12,7 +12,7 @@
 
 CGFloat const ZGCornerViewLineSpace = 2;
 // 注意，是不包含 ZGCornerViewLineSpace 的长度
-CGFloat const ZGCornerViewLineLength = 10;
+CGFloat const ZGCornerViewLineLength = 18;
 CGFloat const ZGCornerViewWidth = ZGClipEdgeUserInteractiveSpaceUnit * 3 + ZGCornerViewLineSpace;
 CGFloat const ZGCornerViewHeight = ZGCornerViewWidth;
 
