@@ -94,19 +94,23 @@
         
         // indicate line
         _vLine1 = [[UIView alloc] initWithFrame:CGRectMake(width / 3.0, unit, 0.5, height - 2*unit)];
-        _vLine1.backgroundColor = [UIColor whiteColor];
+        _vLine1.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+        _vLine1.hidden = YES;
         [self addSubview:_vLine1];
         
         _vLine2 = [[UIView alloc] initWithFrame:CGRectMake(width*(2 / 3.0), unit, 0.5, height - 2*unit)];
-        _vLine2.backgroundColor = [UIColor whiteColor];
+        _vLine2.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+        _vLine2.hidden = YES;
         [self addSubview:_vLine2];
         
         _hLine1 = [[UIView alloc] initWithFrame:CGRectMake(unit, height / 3.0, width - 2*unit, 0.5)];
-        _hLine1.backgroundColor = [UIColor whiteColor];
+        _hLine1.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+        _hLine1.hidden = YES;
         [self addSubview:_hLine1];
         
         _hLine2 = [[UIView alloc] initWithFrame:CGRectMake(unit, height* (2 / 3.0), width - 2*unit, 0.5)];
-        _hLine2.backgroundColor = [UIColor whiteColor];
+        _hLine2.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+        _hLine2.hidden = YES;
         [self addSubview:_hLine2];
         
     }
@@ -159,6 +163,8 @@
 //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
     if (pan.state == UIGestureRecognizerStateBegan) {
         
+        [self indicateLineViewsIsShow:YES];
+        
 //        CGRect tmpFrame = self.frame;
 //        tmpFrame.origin.y += translate.y;
 //        tmpFrame.size.height -= translate.y;
@@ -184,11 +190,15 @@
         [self updateSubviewsFrame];
         
     }else if(pan.state == UIGestureRecognizerStateEnded){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
 
     }else if(pan.state == UIGestureRecognizerStateCancelled){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
@@ -204,6 +214,7 @@
     //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
     if (pan.state == UIGestureRecognizerStateBegan) {
         
+        [self indicateLineViewsIsShow:YES];
         //        CGRect tmpFrame = self.frame;
         //        tmpFrame.origin.y += translate.y;
         //        tmpFrame.size.height -= translate.y;
@@ -231,11 +242,15 @@
         [self updateSubviewsFrame];
         
     }else if(pan.state == UIGestureRecognizerStateEnded){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
         
     }else if(pan.state == UIGestureRecognizerStateCancelled){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
@@ -251,6 +266,7 @@
     //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
     if (pan.state == UIGestureRecognizerStateBegan) {
         
+        [self indicateLineViewsIsShow:YES];
         //        CGRect tmpFrame = self.frame;
         //        tmpFrame.origin.y += translate.y;
         //        tmpFrame.size.height -= translate.y;
@@ -270,11 +286,15 @@
         [self updateSubviewsFrame];
         
     }else if(pan.state == UIGestureRecognizerStateEnded){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
         
     }else if(pan.state == UIGestureRecognizerStateCancelled){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
@@ -290,6 +310,7 @@
     //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
     if (pan.state == UIGestureRecognizerStateBegan) {
         
+        [self indicateLineViewsIsShow:YES];
         //        CGRect tmpFrame = self.frame;
         //        tmpFrame.origin.y += translate.y;
         //        tmpFrame.size.height -= translate.y;
@@ -308,11 +329,15 @@
         [self updateSubviewsFrame];
         
     }else if(pan.state == UIGestureRecognizerStateEnded){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
         
     }else if(pan.state == UIGestureRecognizerStateCancelled){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
@@ -329,6 +354,7 @@
     //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
     if (pan.state == UIGestureRecognizerStateBegan) {
         
+        [self indicateLineViewsIsShow:YES];
         //        CGRect tmpFrame = self.frame;
         //        tmpFrame.origin.y += translate.y;
         //        tmpFrame.size.height -= translate.y;
@@ -363,11 +389,15 @@
         [self updateSubviewsFrame];
         
     }else if(pan.state == UIGestureRecognizerStateEnded){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
         
     }else if(pan.state == UIGestureRecognizerStateCancelled){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
@@ -383,6 +413,8 @@
     //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
     if (pan.state == UIGestureRecognizerStateBegan) {
         
+        [self indicateLineViewsIsShow:YES];
+        
         //        CGRect tmpFrame = self.frame;
         //        tmpFrame.origin.y += translate.y;
         //        tmpFrame.size.height -= translate.y;
@@ -411,11 +443,15 @@
         [self updateSubviewsFrame];
         
     }else if(pan.state == UIGestureRecognizerStateEnded){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
         
     }else if(pan.state == UIGestureRecognizerStateCancelled){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
@@ -431,6 +467,7 @@
     //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
     if (pan.state == UIGestureRecognizerStateBegan) {
         
+        [self indicateLineViewsIsShow:YES];
         //        CGRect tmpFrame = self.frame;
         //        tmpFrame.origin.y += translate.y;
         //        tmpFrame.size.height -= translate.y;
@@ -459,11 +496,15 @@
         [self updateSubviewsFrame];
         
     }else if(pan.state == UIGestureRecognizerStateEnded){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
         
     }else if(pan.state == UIGestureRecognizerStateCancelled){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
@@ -479,6 +520,7 @@
     //    NSLog(@"translate %@",NSStringFromCGPoint(translate));
     if (pan.state == UIGestureRecognizerStateBegan) {
         
+        [self indicateLineViewsIsShow:YES];
         //        CGRect tmpFrame = self.frame;
         //        tmpFrame.origin.y += translate.y;
         //        tmpFrame.size.height -= translate.y;
@@ -501,11 +543,15 @@
         [self updateSubviewsFrame];
         
     }else if(pan.state == UIGestureRecognizerStateEnded){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
         
     }else if(pan.state == UIGestureRecognizerStateCancelled){
+        
+        [self indicateLineViewsIsShow:NO];
         if (self.delegate && [self.delegate respondsToSelector:@selector(clipView:didPanEndWithClipViewRect:)]) {
             [self.delegate clipView:self didPanEndWithClipViewRect:self.frame];
         }
@@ -514,7 +560,15 @@
     [pan setTranslation:CGPointZero inView:pan.view];
 }
 
-
+#pragma mark - indicationLineView
+- (void)indicateLineViewsIsShow:(BOOL)isShow
+{
+    self.vLine1.hidden = !isShow;
+    self.vLine2.hidden = !isShow;
+    self.hLine1.hidden = !isShow;
+    self.hLine2.hidden = !isShow;
+    
+}
 
 #pragma mark - hittest
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
