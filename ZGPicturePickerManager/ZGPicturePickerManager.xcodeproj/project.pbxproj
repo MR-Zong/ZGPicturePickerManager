@@ -133,7 +133,7 @@
 		EFD515FA1C7ED641003361BC = {
 			isa = PBXGroup;
 			children = (
-				EFD516051C7ED642003361BC /* ZGPicturePickerManager */,
+				EFD516051C7ED642003361BC /* Classes */,
 				EFD5161F1C7ED642003361BC /* ZGPicturePickerManagerTests */,
 				EFD5162A1C7ED642003361BC /* ZGPicturePickerManagerUITests */,
 				EFD516041C7ED642003361BC /* Products */,
@@ -150,7 +150,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EFD516051C7ED642003361BC /* ZGPicturePickerManager */ = {
+		EFD516051C7ED642003361BC /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				EFB70BD21C805F5700AC9A83 /* NJKWebViewProgress */,
@@ -166,7 +166,7 @@
 				EFD516171C7ED642003361BC /* Info.plist */,
 				EFD516061C7ED642003361BC /* Supporting Files */,
 			);
-			path = ZGPicturePickerManager;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		EFD516061C7ED642003361BC /* Supporting Files */ = {
