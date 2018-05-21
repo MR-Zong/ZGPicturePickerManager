@@ -93,23 +93,24 @@
         [self addSubview:_brCornerView];
         
         // indicate line
-        _vLine1 = [[UIView alloc] initWithFrame:CGRectMake(width / 3.0, unit, 0.5, height - 2*unit)];
-        _vLine1.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+        CGFloat lineSpace = 1;
+        _vLine1 = [[UIView alloc] initWithFrame:CGRectMake(width / 3.0, unit, lineSpace, height - 2*unit)];
+        _vLine1.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4];
         _vLine1.hidden = YES;
         [self addSubview:_vLine1];
         
-        _vLine2 = [[UIView alloc] initWithFrame:CGRectMake(width*(2 / 3.0), unit, 0.5, height - 2*unit)];
-        _vLine2.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+        _vLine2 = [[UIView alloc] initWithFrame:CGRectMake(width*(2 / 3.0), unit, lineSpace, height - 2*unit)];
+        _vLine2.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4];
         _vLine2.hidden = YES;
         [self addSubview:_vLine2];
         
-        _hLine1 = [[UIView alloc] initWithFrame:CGRectMake(unit, height / 3.0, width - 2*unit, 0.5)];
-        _hLine1.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+        _hLine1 = [[UIView alloc] initWithFrame:CGRectMake(unit, height / 3.0, width - 2*unit, lineSpace)];
+        _hLine1.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4];
         _hLine1.hidden = YES;
         [self addSubview:_hLine1];
         
-        _hLine2 = [[UIView alloc] initWithFrame:CGRectMake(unit, height* (2 / 3.0), width - 2*unit, 0.5)];
-        _hLine2.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+        _hLine2 = [[UIView alloc] initWithFrame:CGRectMake(unit, height* (2 / 3.0), width - 2*unit, lineSpace)];
+        _hLine2.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4];
         _hLine2.hidden = YES;
         [self addSubview:_hLine2];
         
@@ -144,14 +145,15 @@
     _brCornerView.frame = CGRectMake(width - ZGCornerViewWidth, height - ZGCornerViewHeight, ZGCornerViewWidth, ZGCornerViewHeight);
     
     // indicate line
-    _vLine1.frame = CGRectMake(width / 3.0, unit, 0.5, height - 2*unit);
+    CGFloat lineSpace = 1;
+    _vLine1.frame = CGRectMake(width / 3.0, unit, lineSpace, height - 2*unit);
     
-    _vLine2.frame = CGRectMake(width*(2 / 3.0), unit, 0.5, height - 2*unit);
+    _vLine2.frame = CGRectMake(width*(2 / 3.0), unit, lineSpace, height - 2*unit);
     
     
-    _hLine1.frame = CGRectMake(unit, height / 3.0, width - 2*unit, 0.5);
+    _hLine1.frame = CGRectMake(unit, height / 3.0, width - 2*unit, lineSpace);
     
-    _hLine2.frame = CGRectMake(unit, height* (2 / 3.0), width - 2*unit, 0.5);
+    _hLine2.frame = CGRectMake(unit, height* (2 / 3.0), width - 2*unit, lineSpace);
     
 }
 
